@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>チーム＆選手プロフィール｜BOSCO NEXT</title>
+<meta name="description" content="BOSCO NEXT（ボスコ ネクスト）の選手・スタッフ紹介とチーム情報。2013年発足、東京を拠点に活動するソーシャルフットボールのクラブチームです。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Dela+Gothic+One&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="canonical" href="https://weekendclub.github.io/bosconext/team.html">
+<meta property="og:url" content="https://weekendclub.github.io/bosconext/team.html">
+</head>
+<body>
+
+<header id="site-header"></header>
+<nav class="mobile-menu" id="mobileMenu"></nav>
+
+<section class="subhero">
+  <div class="wrap subhero-inner">
+    <div class="breadcrumb"><a href="index.html">ホーム</a> ／ チーム＆選手</div>
+    <span class="kicker">Team &amp; Players</span>
+    <h1>チーム＆選手プロフィール</h1>
+    <p>ピッチで闘うメンバーと、チームを支えるスタッフ、そしてチームのあゆみを紹介します。</p>
+  </div>
+</section>
+
+<section class="block">
+  <div class="wrap">
+    <div class="lead-block reveal" id="teamLead"></div>
+    <dl class="kvlist reveal" id="teamData"></dl>
+  </div>
+</section>
+
+<section class="block" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="kicker">Players</span>
+      <h2 class="sec-title">選手</h2>
+      <p class="sec-lead">背番号とニックネームでご紹介します。</p>
+    </div>
+    <div class="roster-grid reveal" id="roster"></div>
+  </div>
+</section>
+
+<section class="block" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="kicker">Staff</span>
+      <h2 class="sec-title">スタッフ</h2>
+    </div>
+    <div class="roster-grid reveal" id="staff"></div>
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="wrap">
+    <h2>一緒に闘う仲間を募集中</h2>
+    <p>プレイヤー・マネージャー・サポーター歓迎。見学・体験だけでも大丈夫です。</p>
+    <div class="hero-cta">
+      <a class="btn btn-primary" data-link="join">⚽ 体験・入部のお問い合わせ</a>
+      <a class="btn btn-ghost" data-link="contact">お問い合わせ</a>
+    </div>
+  </div>
+</section>
+
+<!-- 選手プロフィール（カードをクリックで開く／縦スクロール） -->
+<div class="pmodal" id="pmodal" onclick="if(event.target===this)closeProfile()">
+  <div class="pmodal-panel" role="dialog" aria-modal="true" aria-label="プロフィール">
+    <button class="pmodal-close" type="button" onclick="closeProfile()" aria-label="閉じる">×</button>
+    <div id="pmBody"></div>
+  </div>
+</div>
+
+<footer id="site-footer"></footer>
+<button class="to-top" id="toTop" aria-label="上に戻る">↑</button>
+
+<script src="site.js"></script>
+<script>
+/* =====================================================================
+   ★★★ このページの内容はここを編集します ★★★
+   ・選手を追加 → players の { } をコピーして増やす（no・name）
+   ・スタッフを追加 → staff の { } をコピーして増やす
+   ・写真を入れたいときは photo に画像URLを入れる（空 "" なら背番号を表示）
+   ===================================================================== */
+const PAGE = {
+  lead: [
+    "BOSCO NEXT（ボスコ ネクスト）は、精神障がいのある方を中心としたチームですが、障害の枠にとらわれず、仲間・チームワークを大切にしながら、楽しんで勝利を目指しています。",
+    "2012年5月頃、デイケアのフットサルチーム「BOSCO」として活動を開始。2013年4月1日、デイケア卒業後も「フットサルをできる場をつくろう」という声から、BOSCO NEXTと改名して独立し、現在はチームで自主運営を行っています。"
+  ],
+
+  /* チームデータ（ラベル：内容） */
+  data: [
+    {k:"発足日",     v:"2013年4月1日"},
+    {k:"活動場所",   v:"大田区・目黒区・品川区・神奈川県 ほか"},
+    {k:"活動日",     v:"毎週土曜日（祝日等あり）"},
+    {k:"ユニフォーム", v:"1st：レッド ／ 2nd：ブルー"}
+  ],
+
+  /* 選手（背番号・ニックネーム）。背番号がない場合は no:"" でOK */
+  players: [
+    {no:"2",  name:"まこ",      pos:"", photo:""},
+    {no:"5",  name:"だいき",    pos:"", photo:""},
+    {no:"7",  name:"あゆねえ",  pos:"", photo:""},
+    {no:"8",  name:"せいちゃん", pos:"", photo:""},
+    {no:"10", name:"ヒットミー", pos:"", photo:""},
+    {no:"14", name:"にっしー",  pos:"", photo:""},
+    {no:"18", name:"たっちゃん", pos:"", photo:""},
+    {no:"19", name:"ヒカル",    pos:"", photo:""},
+    {no:"23", name:"すがちゃん", pos:"", photo:""},
+    {no:"25", name:"マッキー",  pos:"", photo:""},
+    {no:"26", name:"とま",      pos:"", photo:""},
+    {no:"39", name:"おのっち",  pos:"", photo:""},
+    {no:"40", name:"あべちゃん", pos:"", photo:""},
+    {no:"",   name:"ハマさん",  pos:"", photo:""},
+    {no:"",   name:"うら",      pos:"", photo:""}
+  ],
+
+  /* スタッフ（役割・お名前） */
+  staff: [
+    {role:"監督", name:"アキさん"}
+  ]
+};
+
+/* ===== 表示の仕組み（内容は team.json＝CMSで編集。読めない時は上の PAGE を表示）===== */
+var TEAM = {players:[], staff:[]};
+
+function profileCard(p, type, i){
+  var num = p.no ? esc(p.no) : (type==='s' ? '★' : '⚽');
+  var label;
+  if(type==='s'){ label = esc(p.role || 'スタッフ'); }
+  else {
+    var m=[]; if(p.pos) m.push(esc(p.pos)); if(p.no) m.push('No.'+esc(p.no));
+    label = m.length ? m.join(' ・ ') : 'メンバー';
+  }
+  return '<button type="button" class="player-card" onclick="openProfile(\''+type+'\','+i+')" aria-label="'+esc(p.name)+'のプロフィールを開く">'+
+    '<div class="player-top"><span class="player-no">'+num+'</span></div>'+
+    '<div class="player-body"><span class="player-pos">'+label+'</span>'+
+    '<div class="player-name">'+esc(p.name)+'</div></div></button>';
+}
+
+function renderTeam(d){
+  TEAM = d;
+  document.getElementById("teamLead").innerHTML = (d.lead||[]).map(function(p){return '<p>'+esc(p)+'</p>';}).join("");
+  document.getElementById("teamData").innerHTML = (d.data||[]).map(function(x){
+    return '<dt>'+esc(x.k)+'</dt><dd>'+esc(x.v)+'</dd>';
+  }).join("");
+  document.getElementById("roster").innerHTML = (d.players||[]).map(function(p,i){ return profileCard(p,'p',i); }).join("");
+  document.getElementById("staff").innerHTML  = (d.staff||[]).map(function(s,i){ return profileCard(s,'s',i); }).join("");
+  observeReveals();
+}
+
+/* カードをクリックすると、その人のプロフィールを縦スクロールで表示 */
+function openProfile(type, i){
+  var p = (type==='s') ? (TEAM.staff||[])[i] : (TEAM.players||[])[i];
+  if(!p) return;
+  var num = p.no ? esc(p.no) : (type==='s' ? '★' : '⚽');
+  var sub = (type==='s') ? esc(p.role||'') : esc(p.pos||'');
+  var html = '';
+  if(p.photo) html += '<div class="pm-photo"><img src="'+esc(p.photo)+'" alt="'+esc(p.name)+'"></div>';
+  html += '<div class="pm-head"><span class="pm-no">'+num+'</span>'+
+    '<div><div class="pm-name">'+esc(p.name)+'</div>'+(sub?'<div class="pm-pos">'+sub+'</div>':'')+'</div></div>';
+  if(p.meta) html += '<p class="pm-meta">'+esc(p.meta)+'</p>';
+  if(p.info && p.info.length){
+    html += '<dl class="pm-info">'+p.info.map(function(x){return '<dt>'+esc(x.k)+'</dt><dd>'+esc(x.v)+'</dd>';}).join('')+'</dl>';
+  } else {
+    html += '<p class="pm-empty">プロフィールは準備中です。</p>';
+  }
+  document.getElementById("pmBody").innerHTML = html;
+  var panel = document.querySelector("#pmodal .pmodal-panel");
+  if(panel) panel.scrollTop = 0;
+  document.getElementById("pmodal").classList.add("open");
+  document.body.style.overflow = "hidden";
+}
+function closeProfile(){
+  document.getElementById("pmodal").classList.remove("open");
+  document.body.style.overflow = "";
+}
+document.addEventListener("keydown", function(e){ if(e.key==="Escape") closeProfile(); });
+
+loadJSON("team.json", function(d){ renderTeam(d || PAGE); });
+</script>
+</body>
+</html>

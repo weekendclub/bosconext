@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>リーグ｜BOSCO NEXT</title>
+<meta name="description" content="BOSCO NEXT（ボスコ ネクスト）が参加するリーグの順位表。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Dela+Gothic+One&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="canonical" href="https://weekendclub.github.io/bosconext/league.html">
+<meta property="og:url" content="https://weekendclub.github.io/bosconext/league.html">
+</head>
+<body>
+
+<header id="site-header"></header>
+<nav class="mobile-menu" id="mobileMenu"></nav>
+
+<section class="subhero">
+  <div class="wrap subhero-inner">
+    <div class="breadcrumb"><a href="index.html">ホーム</a> ／ リーグ</div>
+    <span class="kicker">League</span>
+    <h1>リーグ</h1>
+    <p>参加リーグの順位表です。結果が出るたびに更新していきます。</p>
+  </div>
+</section>
+
+<section class="block">
+  <div class="wrap">
+    <div class="lead-block reveal" id="lead"></div>
+  </div>
+</section>
+
+<section class="block" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="kicker">Standings</span>
+      <h2 class="sec-title" id="leagueName">順位表</h2>
+      <p class="sec-lead" id="leagueNote"></p>
+    </div>
+    <div class="table-wrap reveal">
+      <table class="ltable">
+        <thead>
+          <tr><th>順位</th><th>チーム</th><th>試合</th><th>勝</th><th>分</th><th>敗</th><th>勝点</th></tr>
+        </thead>
+        <tbody id="standings"></tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="wrap">
+    <h2>応援よろしくお願いします</h2>
+    <p>試合の予定はスケジュールページから確認できます。</p>
+    <div class="hero-cta">
+      <a class="btn btn-primary" href="schedule.html">スケジュールを見る</a>
+      <a class="btn btn-ghost" data-link="contact">お問い合わせ</a>
+    </div>
+  </div>
+</section>
+
+<footer id="site-footer"></footer>
+<button class="to-top" id="toTop" aria-label="上に戻る">↑</button>
+
+<script src="site.js"></script>
+<script>
+/* =====================================================================
+   ★★★ このページの内容はここを編集します ★★★
+   ・順位表を更新 → standings の数字や順番を書き換える
+   ・自チームの行は mine:true にすると色がつきます
+   ===================================================================== */
+const PAGE = {
+  leagueName: "◯◯リーグ 20XX シーズン",   /* リーグ名・シーズンに書き換え */
+  leagueNote: "※ 下の順位表はサンプルです。最新の結果に更新してお使いください。",
+
+  /* rank=順位, team=チーム名, p=試合数, w=勝, d=分, l=敗, pts=勝点 */
+  standings: [
+    {rank:1, team:"チームA", p:5, w:4, d:1, l:0, pts:13},
+    {rank:2, team:"BOSCO NEXT", p:5, w:4, d:0, l:1, pts:12, mine:true},
+    {rank:3, team:"チームB", p:5, w:3, d:0, l:2, pts:9},
+    {rank:4, team:"チームC", p:5, w:1, d:1, l:3, pts:4},
+    {rank:5, team:"チームD", p:5, w:0, d:0, l:5, pts:0}
+  ]
+};
+
+/* ===== 表示の仕組み ===== */
+document.getElementById("leagueName").textContent = PAGE.leagueName;
+document.getElementById("leagueNote").textContent = PAGE.leagueNote;
+document.getElementById("lead").innerHTML =
+  '<p>BOSCO NEXTが参加するリーグの順位表を掲載しています。日々の試合結果を反映して更新していきます。</p>';
+
+document.getElementById("standings").innerHTML = PAGE.standings.map(function(t){
+  return '<tr'+(t.mine?' class="mine"':'')+'>'+
+    '<td class="rank">'+esc(String(t.rank))+'</td>'+
+    '<td>'+esc(t.team)+'</td>'+
+    '<td>'+esc(String(t.p))+'</td><td>'+esc(String(t.w))+'</td>'+
+    '<td>'+esc(String(t.d))+'</td><td>'+esc(String(t.l))+'</td>'+
+    '<td><strong>'+esc(String(t.pts))+'</strong></td></tr>';
+}).join("");
+
+observeReveals();
+</script>
+</body>
+</html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>お問い合わせ｜BOSCO NEXT</title>
+<meta name="description" content="BOSCO NEXT（ボスコ ネクスト）へのお問い合わせ。体験・入部・対戦・取材などのご連絡はこちらから。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Dela+Gothic+One&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./style.css">
+<link rel="canonical" href="https://weekendclub.github.io/bosconext/contact.html">
+<meta property="og:url" content="https://weekendclub.github.io/bosconext/contact.html">
+</head>
+<body>
+
+<header id="site-header"></header>
+<nav class="mobile-menu" id="mobileMenu"></nav>
+
+<section class="subhero">
+  <div class="wrap subhero-inner">
+    <div class="breadcrumb"><a href="index.html">ホーム</a> ／ お問い合わせ</div>
+    <span class="kicker">Contact</span>
+    <h1>お問い合わせ</h1>
+    <p>体験・入部・練習試合の対戦・取材など、お気軽にご連絡ください。見学だけでも大丈夫です。</p>
+  </div>
+</section>
+
+<section class="block">
+  <div class="wrap contact-grid">
+
+    <div class="contact-card reveal">
+      <h3>連絡方法</h3>
+      <p>右のフォーム、またはSNSのDMからご連絡いただけます。体験・見学・入部・対戦のご相談も歓迎です。</p>
+      <div class="contact-methods">
+        <a class="cmethod" data-link="x" target="_blank" rel="noopener">
+          <span class="ic">𝕏</span><span><span class="l1">X（旧Twitter）のDM</span><span class="l2">@BOSCONEXT</span></span>
+        </a>
+        <a class="cmethod" data-link="instagram" target="_blank" rel="noopener">
+          <span class="ic">📷</span><span><span class="l1">Instagram のDM</span><span class="l2">@bosconext_futsal</span></span>
+        </a>
+      </div>
+    </div>
+
+    <div class="contact-card reveal">
+      <h3>メッセージを送る</h3>
+      <p>必要事項をご記入のうえ、送信ボタンを押してください。お使いのメールアプリが起動します。</p>
+      
+      <form onsubmit="sendEmail(event)" class="cform">
+        <div class="cfield">
+          <label for="cf-name">お名前</label>
+          <input id="cf-name" type="text" placeholder="山田 太郎" required>
+        </div>
+        
+        <div class="cfield">
+          <label for="cf-type">お問い合わせの種類</label>
+          <select id="cf-type" style="width:100%;padding:.8em 1em;border:1px solid var(--line);border-radius:10px;font:inherit;background:#fff;color:var(--ink)">
+            <option value="general">体験・見学希望 / 取材 / その他</option>
+            <option value="join">入部希望</option>
+            <option value="matchmake">練習試合・対戦のご相談</option>
+          </select>
+        </div>
+        
+        <div class="cfield">
+          <label for="cf-msg">お問い合わせ内容</label>
+          <textarea id="cf-msg" rows="5" placeholder="ご相談内容をご記入ください" required></textarea>
+        </div>
+        
+        <button type="submit" class="btn btn-primary">メールを作成する</button>
+      </form>
+      
+      <p class="cnote" style="margin-top: 20px;">※「メールを作成する」を押すと、選択した目的に応じたチームの担当者宛てにメールの下書きが作成されますので、そのまま送信してください。</p>
+    </div>
+
+  </div>
+</section>
+
+<footer id="site-footer"></footer>
+<button class="to-top" id="toTop" aria-label="上に戻る">↑</button>
+
+<script>
+function sendEmail(event) {
+  event.preventDefault(); // 通常の送信をキャンセル
+
+  const name = document.getElementById('cf-name').value;
+  const typeSelect = document.getElementById('cf-type');
+  const typeText = typeSelect.options[typeSelect.selectedIndex].text;
+  const message = document.getElementById('cf-msg').value;
+
+  // 選択肢によってメールアドレスを切り替え
+  let emailTo = "bosco_futsal@yahoo.co.jp"; // デフォルト（総合）
+  
+  if (typeSelect.value === "join") {
+    emailTo = "bosco_next_futsal-management@yahoo.co.jp"; // 入部希望
+  } else if (typeSelect.value === "matchmake") {
+    emailTo = "bosco_next_futsal-matchmake@yahoo.co.jp"; // マッチメイク
+  }
+
+  // メール件名と本文の作成
+  const subject = encodeURIComponent(`【BOSCO NEXTお問い合わせ】${typeText}`);
+  const body = encodeURIComponent(`お名前: ${name}様\n\n【本文】\n${message}`);
+
+  // メールアプリを起動するリンクにジャンプ
+  window.location.href = `mailto:${emailTo}?subject=${subject}&body=${body}`;
+}
+</script>
+
+<script src="./site.js"></script>
+</body>
+</html>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>大会出場概要｜BOSCO NEXT</title>
+<meta name="description" content="BOSCO NEXT（ボスコ ネクスト）の大会出場・戦績。ソーシャルフットボールの各大会への参加記録です。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Dela+Gothic+One&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="canonical" href="https://weekendclub.github.io/bosconext/tournaments.html">
+<meta property="og:url" content="https://weekendclub.github.io/bosconext/tournaments.html">
+</head>
+<body>
+
+<header id="site-header"></header>
+<nav class="mobile-menu" id="mobileMenu"></nav>
+
+<section class="subhero">
+  <div class="wrap subhero-inner">
+    <div class="breadcrumb"><a href="index.html">ホーム</a> ／ 大会出場概要</div>
+    <span class="kicker">Tournament History</span>
+    <h1>大会出場概要</h1>
+    <p>これまで参加してきた大会と、その戦績の記録です。</p>
+  </div>
+</section>
+
+<section class="block">
+  <div class="wrap">
+    <div class="lead-block reveal" id="lead"></div>
+  </div>
+</section>
+
+<section class="block" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="kicker">Records</span>
+      <h2 class="sec-title">戦績</h2>
+      <p class="sec-lead">新しい大会を上に追記していけます。</p>
+    </div>
+    <div class="timeline reveal" id="timeline"></div>
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="wrap">
+    <h2>次は全国大会へ</h2>
+    <p>応援が選手の力になります。試合予定はスケジュールページから。</p>
+    <div class="hero-cta">
+      <a class="btn btn-primary" href="schedule.html">スケジュールを見る</a>
+      <a class="btn btn-ghost" data-link="contact">お問い合わせ</a>
+    </div>
+  </div>
+</section>
+
+<footer id="site-footer"></footer>
+<button class="to-top" id="toTop" aria-label="上に戻る">↑</button>
+
+<script src="site.js"></script>
+<script>
+/* =====================================================================
+   ★★★ このページの内容はここを編集します ★★★
+   ・大会を追加 → history の { } をコピーして「一番上」に貼る（新しい順）
+   ・result は "win"（優勝）/ "2nd"（準優勝）/ "join"（出場）/ ""（なし）
+   ===================================================================== */
+const PAGE = {
+  lead: [
+    "BOSCO NEXTは、ソーシャルフットボールの各大会に挑戦してきました。直近の戦績は次のとおりです。",
+    "※ 過去の大会は、下の形式にならって追記してください（古い記録ほど下に並びます）。"
+  ],
+
+  history: [
+    {
+      date:"2026.7.19（予定）",
+      title:"JIFF 第6回ソーシャルフットボール全国大会 予選・関東大会",
+      meta:"サイデン化学アリーナさいたま",
+      result:"join",
+      note:"全国大会〈神奈川県／11月21日〉への出場をかけた予選。"
+    },
+    {
+      date:"2026.5.31",
+      title:"ソーシャルフットボール東京都大会2026",
+      meta:"明治学院大学 白金キャンパス",
+      result:"2nd",
+      note:"4連覇を目指した大会で準優勝。最後まで全力で闘い抜きました。"
+    },
+    {
+      date:"20XX.XX",
+      title:"○○大会（サンプル）",
+      meta:"会場名",
+      result:"win",
+      note:"結果やエピソードをここに記入してください。"
+    }
+  ]
+};
+
+/* ===== 表示の仕組み（内容は tournaments.json＝CMSで編集。読めない時は上の PAGE を表示）===== */
+var badge = {win:'<span class="result-badge rb-win">優勝 🏆</span>',
+             "2nd":'<span class="result-badge rb-2nd">準優勝 🥈</span>',
+             join:'<span class="result-badge rb-join">出場</span>', "":""};
+
+function renderTournaments(d){
+  document.getElementById("lead").innerHTML = (d.lead||[]).map(function(p){return '<p>'+esc(p)+'</p>';}).join("");
+  document.getElementById("timeline").innerHTML = (d.history||[]).map(function(h){
+    return '<div class="tl-item reveal"><div class="tl-date">'+esc(h.date)+'</div>'+
+      '<div class="tl-title">'+esc(h.title)+(badge[h.result]||"")+'</div>'+
+      (h.meta?'<div class="tl-meta">📍 '+esc(h.meta)+'</div>':'')+
+      (h.note?'<div class="tl-meta">'+esc(h.note)+'</div>':'')+
+      '</div>';
+  }).join("");
+  observeReveals();
+}
+loadJSON("tournaments.json", function(d){ renderTournaments(d || PAGE); });
+</script>
+</body>
+</html>

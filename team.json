@@ -1,0 +1,197 @@
+{
+  "lead": [
+    "BOSCO NEXT（ボスコ ネクスト）は、精神障がいのある方を中心としたチームですが、障害の枠にとらわれず、仲間・チームワークを大切にしながら、楽しんで勝利を目指しています。",
+    "2012年5月頃、デイケアのフットサルチーム「BOSCO」として活動を開始。2013年4月1日、デイケア卒業後も「フットサルをできる場をつくろう」という声から、BOSCO NEXTと改名して独立し、現在はチームで自主運営を行っています。"
+  ],
+  "data": [
+    {"k": "発足日", "v": "2013年4月1日"},
+    {"k": "活動場所", "v": "大田区・目黒区・品川区・神奈川県 ほか"},
+    {"k": "活動日", "v": "毎週土曜日（祝日等あり）"},
+    {"k": "ユニフォーム", "v": "1st：レッド ／ 2nd：ブルー"}
+  ],
+  "players": [
+    {
+      "no": "2", "name": "まこ", "pos": "フィクソ",
+      "photo": "https://image.jimcdn.com/app/cms/image/transf/dimension=400x400:mode=crop:format=jpg/path/sa4c70deaa5976d3d/image/ia82c54914911547a/version/1768278234/image.jpg",
+      "meta": "10月26日 ・ 蠍座♏ B型",
+      "info": [
+        {"k": "ポジション", "v": "フィクソ"},
+        {"k": "シューズ", "v": "New Balance"},
+        {"k": "目標・今後", "v": "シュートの精度を高めて、チームを救うゴールを決めたい"},
+        {"k": "趣味", "v": "YouTubeを見ること"},
+        {"k": "入ったきっかけ", "v": "就労移行支援事業所であべちゃんに出会い、BOSCO NEXTを知った"},
+        {"k": "ひとこと", "v": "BOSCO NEXTはソーシャルフットボールで最高のチーム！！！"}
+      ]
+    },
+    {
+      "no": "5", "name": "だいき", "pos": "",
+      "photo": "https://image.jimcdn.com/app/cms/image/transf/dimension=400x400:mode=crop:format=jpg/path/sa4c70deaa5976d3d/image/i2f9e23ee69a3593e/version/1759204502/image.jpg",
+      "meta": "", "info": []
+    },
+    {
+      "no": "7", "name": "あゆねえ", "pos": "FP",
+      "photo": "https://image.jimcdn.com/app/cms/image/transf/dimension=400x400:mode=crop:format=jpg/path/sa4c70deaa5976d3d/image/ifd41a4024f03f922/version/1759204579/image.jpg",
+      "meta": "1月2日 ・ 山羊座♑ O型",
+      "info": [
+        {"k": "ポジション", "v": "FW/MF（全力プレー）"},
+        {"k": "目標・今後", "v": "ご飯（飲み会）出席率向上（いつもすみません）"}
+      ]
+    },
+    {
+      "no": "8", "name": "せいちゃん", "pos": "アラ",
+      "photo": "https://image.jimcdn.com/app/cms/image/transf/dimension=400x400:mode=crop:format=jpg/path/sa4c70deaa5976d3d/image/iced6e3cd5a20356e/version/1418134116/image.jpg",
+      "meta": "12月20日 ・ O型",
+      "info": [
+        {"k": "ポジション", "v": "アラ（ゲームメーカー）"},
+        {"k": "趣味", "v": "野球（ベイスターズ）、サッカー観戦"},
+        {"k": "入ったきっかけ", "v": "通っていたデイケアにフットサル部があり、行ってみたら、めちゃくちゃ楽しかった"},
+        {"k": "目標・今後", "v": "みんなで喜びの涙を流したい。イニエスタになりたい。"},
+        {"k": "ひとこと", "v": "細かすぎて伝わらない！！！"},
+        {"k": "マネージャーより", "v": "3つの漢字＝努・練・球／動物＝イヌ（人懐っこくて足が速い）／歴史上の人物＝伊達政宗（若さと存在感）"}
+      ]
+    },
+    {
+      "no": "10", "name": "ヒットミー", "pos": "FP",
+      "photo": "https://image.jimcdn.com/app/cms/image/transf/dimension=400x400:mode=crop:format=jpg/path/sa4c70deaa5976d3d/image/i6f2aec36d78d5d57/version/1418135442/image.jpg",
+      "meta": "5月15日 ・ 牡牛座♉ O型",
+      "info": [
+        {"k": "ポジション", "v": "フィールドプレーヤー、代表補佐"}
+      ]
+    },
+    {
+      "no": "14", "name": "にっしー", "pos": "アラ/フィクソ",
+      "photo": "https://image.jimcdn.com/app/cms/image/transf/dimension=400x400:mode=crop:format=jpg/path/sa4c70deaa5976d3d/image/i42bb6f476c698401/version/1759530459/image.jpg",
+      "meta": "12月21日 ・ 射手座♐ A型",
+      "info": [
+        {"k": "ポジション", "v": "アラ、フィクソ"}
+      ]
+    },
+    {
+      "no": "18", "name": "たっちゃん", "pos": "FP",
+      "photo": "https://image.jimcdn.com/app/cms/image/transf/dimension=400x400:mode=crop:format=jpg/path/sa4c70deaa5976d3d/image/ie07438dc7e43695f/version/1759530728/image.jpg",
+      "meta": "8月22日 ・ 長野県出身 ・ 獅子座♌ B型",
+      "info": [
+        {"k": "ポジション", "v": "フィールドプレーヤー"}
+      ]
+    },
+    {
+      "no": "19", "name": "ヒカル", "pos": "ピヴォ",
+      "photo": "https://image.jimcdn.com/app/cms/image/transf/dimension=400x400:mode=crop:format=jpg/path/sa4c70deaa5976d3d/image/i90a566673ccf7b69/version/1759528295/image.jpg",
+      "meta": "165cm／65kg ・ 1995年10月7日 ・ 天秤座♎ A型 ・ 東京都品川区出身",
+      "info": [
+        {"k": "ポジション", "v": "ピヴォ"},
+        {"k": "シューズ", "v": "adidas"},
+        {"k": "始めた年齢", "v": "6歳"},
+        {"k": "武器", "v": "得点力"},
+        {"k": "好きな選手", "v": "上田綺世、岩下敬輔"},
+        {"k": "背番号へのこだわり", "v": "19／9が好きだから"},
+        {"k": "好きな食べ物", "v": "唐揚げ"},
+        {"k": "好きな映画", "v": "タイタニック"},
+        {"k": "好きなアニメ・漫画", "v": "今日から俺は"},
+        {"k": "好きな音楽", "v": "SEKAI NO OWARI"},
+        {"k": "趣味", "v": "スポーツ観戦"},
+        {"k": "仲の良いメンバー", "v": "みんな"}
+      ]
+    },
+    {
+      "no": "23", "name": "すがちゃん", "pos": "FP",
+      "photo": "https://image.jimcdn.com/app/cms/image/transf/dimension=400x400:mode=crop:format=jpg/path/sa4c70deaa5976d3d/image/i307a9a0d6d51cbd1/version/1759531432/image.jpg",
+      "meta": "9月21日 ・ 乙女座♍",
+      "info": [
+        {"k": "ポジション", "v": "フィールドプレーヤー"}
+      ]
+    },
+    {
+      "no": "25", "name": "マッキー", "pos": "ゴレイロ/ピヴォ",
+      "photo": "https://image.jimcdn.com/app/cms/image/transf/dimension=400x400:mode=crop:format=jpg/path/sa4c70deaa5976d3d/image/i8c3ffdaddbe11666/version/1759463407/image.jpg",
+      "meta": "177cm／90kg ・ 1994年2月11日 ・ みずがめ座♒ A型 ・ 神奈川県横浜市出身",
+      "info": [
+        {"k": "ポジション", "v": "ゴレイロ、ピヴォ"},
+        {"k": "シューズ", "v": "hummel、UMBRO"},
+        {"k": "始めた年齢", "v": "10歳"},
+        {"k": "武器", "v": "セービング、コーチング、攻撃参加、ミドルシュート"},
+        {"k": "好きな選手", "v": "中村俊輔、ノイアー"},
+        {"k": "背番号へのこだわり", "v": "25／中村俊輔の背番号。GKでも司令塔という意味と、笑顔でニコッの語呂合わせ"},
+        {"k": "好きな食べ物", "v": "ラーメン、寿司、肉"},
+        {"k": "好きなアニメ・漫画", "v": "「ハイキュー」西谷夕と北信介"},
+        {"k": "好きな音楽", "v": "Mr.Children、B'z"},
+        {"k": "趣味", "v": "カラオケ🎤"},
+        {"k": "仲の良いメンバー", "v": "みんな全員😊"},
+        {"k": "SNS", "v": "X @mackeyfootball ／ Instagram @mackeysocialfootball"}
+      ]
+    },
+    {
+      "no": "26", "name": "とま", "pos": "アラ",
+      "photo": "https://image.jimcdn.com/app/cms/image/transf/dimension=400x400:mode=crop:format=jpg/path/sa4c70deaa5976d3d/image/i493b60d674dcb983/version/1759529278/image.jpg",
+      "meta": "174cm／62kg ・ 1992年2月16日 ・ みずがめ座♒ A型 ・ 東京都大田区出身",
+      "info": [
+        {"k": "ポジション", "v": "アラ"},
+        {"k": "シューズ", "v": "UMBRO"},
+        {"k": "始めた年齢", "v": "11歳"},
+        {"k": "武器", "v": "不敵なプレー"},
+        {"k": "好きな選手", "v": "中村俊輔"},
+        {"k": "背番号へのこだわり", "v": "26／最初はなんとなく25。変える機会にレベルアップの期待を込めて26に"},
+        {"k": "好きな食べ物", "v": "シチューライス"},
+        {"k": "好きな映画", "v": "君の名は"},
+        {"k": "好きな漫画", "v": "ふつうの軽音部"},
+        {"k": "好きなキャラクター", "v": "「ジャイアントキリング」達海猛"},
+        {"k": "好きな音楽", "v": "Official髭男dism"},
+        {"k": "趣味", "v": "フットサルとスプラトゥーン"},
+        {"k": "仲の良いメンバー", "v": "みんな分け隔てなく全員"},
+        {"k": "入ったきっかけ", "v": "デイケアのイルボスコで入所時から知っていたから"},
+        {"k": "目標・今後", "v": "勝つことも大事だけど、みんなとフットサルを通じて楽しみたい"},
+        {"k": "ひとこと", "v": "右ひざ関節さん。いままでありがとう。まだもう少し頑張ろう"}
+      ]
+    },
+    {
+      "no": "39", "name": "おのっち", "pos": "FP",
+      "photo": "https://image.jimcdn.com/app/cms/image/transf/dimension=400x400:mode=crop:format=jpg/path/sa4c70deaa5976d3d/image/icd1d16259258df13/version/1759463334/image.jpg",
+      "meta": "170cm／70kg ・ 7月11日 ・ 蟹座♋ O型 ・ 神奈川県横浜市出身",
+      "info": [
+        {"k": "ポジション", "v": "ゴレイロ以外"},
+        {"k": "シューズ", "v": "New Balance"},
+        {"k": "始めた年齢", "v": "4歳"},
+        {"k": "武器", "v": "コンビネーション"},
+        {"k": "好きな選手", "v": "トッティ、小野伸二、伊東純也"},
+        {"k": "背番号へのこだわり", "v": "39／サンキュー！大学サークル時代の番号（高校サッカーは37）"},
+        {"k": "好きな食べ物", "v": "高級食材、雲丹、蟹、牛肉"},
+        {"k": "好きな映画", "v": "インターステラー、STAR WARS（SF映画）"},
+        {"k": "好きなアニメ・漫画", "v": "鬼滅の刃の猗窩座"},
+        {"k": "好きな音楽", "v": "L'Arc〜en〜Ciel"},
+        {"k": "趣味", "v": "川崎フロンターレ🐬、麻雀🀄"},
+        {"k": "仲の良いメンバー", "v": "みんな！特に兄貴たっちゃん！"},
+        {"k": "SNS", "v": "X @09D3101018B ／ Instagram @tai_ono"}
+      ]
+    },
+    {
+      "no": "40", "name": "あべちゃん", "pos": "FP",
+      "photo": "https://image.jimcdn.com/app/cms/image/transf/dimension=400x400:mode=crop:format=jpg/path/sa4c70deaa5976d3d/image/id747e68dfc185f61/version/1759531602/image.jpg",
+      "meta": "", "info": [
+        {"k": "ポジション", "v": "フィールドプレーヤー"}
+      ]
+    },
+    {
+      "no": "", "name": "ハマさん", "pos": "ゴレイロ",
+      "photo": "https://image.jimcdn.com/app/cms/image/transf/dimension=400x400:mode=crop:format=jpg/path/sa4c70deaa5976d3d/image/i53a62a38f6e87abb/version/1780601636/image.jpg",
+      "meta": "", "info": [
+        {"k": "ポジション", "v": "ゴレイロ"}
+      ]
+    },
+    {
+      "no": "", "name": "うら", "pos": "FP",
+      "photo": "https://image.jimcdn.com/app/cms/image/transf/dimension=400x400:mode=crop:format=jpg/path/sa4c70deaa5976d3d/image/ifd596bf928701c7a/version/1759531820/image.jpg",
+      "meta": "", "info": [
+        {"k": "ポジション", "v": "FP"}
+      ]
+    }
+  ],
+  "staff": [
+    {
+      "role": "監督", "name": "アキさん",
+      "photo": "https://image.jimcdn.com/app/cms/image/transf/dimension=400x400:mode=crop:format=jpg/path/sa4c70deaa5976d3d/image/ieb1b69d5dabe471f/version/1759529685/image.jpg",
+      "meta": "", "info": [
+        {"k": "役割", "v": "監督"}
+      ]
+    }
+  ]
+}

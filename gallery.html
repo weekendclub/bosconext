@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>フォトギャラリー｜BOSCO NEXT</title>
+<meta name="description" content="BOSCO NEXT（ボスコ ネクスト）の試合・遠征・練習の写真ギャラリー。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Dela+Gothic+One&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="canonical" href="https://weekendclub.github.io/bosconext/gallery.html">
+<meta property="og:url" content="https://weekendclub.github.io/bosconext/gallery.html">
+</head>
+<body>
+
+<header id="site-header"></header>
+<nav class="mobile-menu" id="mobileMenu"></nav>
+
+<section class="subhero">
+  <div class="wrap subhero-inner">
+    <div class="breadcrumb"><a href="index.html">ホーム</a> ／ フォトギャラリー</div>
+    <span class="kicker">Gallery</span>
+    <h1>フォトギャラリー</h1>
+    <p>試合・遠征・練習の風景をお届けします。</p>
+  </div>
+</section>
+
+<section class="block">
+  <div class="wrap">
+    <div class="gallery-grid reveal" id="gallery"></div>
+    <p class="cnote reveal" style="margin-top:20px">※ 写真を追加するには、下の photos に { src:"画像のURL", cap:"説明" } を足してください。現在の写真は今のサイト（Jimdo）から表示しています。将来Jimdoを閉じる場合は、画像を新しい場所にアップして src を差し替えてください。</p>
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="wrap">
+    <h2>もっと見る</h2>
+    <p>最新の写真はSNSでも随時更新しています。</p>
+    <div class="hero-cta">
+      <a class="btn btn-primary" href="links.html">SNS・リンク集へ</a>
+      <a class="btn btn-ghost" data-link="contact">お問い合わせ</a>
+    </div>
+  </div>
+</section>
+
+<footer id="site-footer"></footer>
+<button class="to-top" id="toTop" aria-label="上に戻る">↑</button>
+
+<!-- 集合写真を1枚目に使うため読み込み -->
+<script src="team-photo.js"></script>
+<script src="site.js"></script>
+<script>
+/* =====================================================================
+   ★★★ このページの内容はここを編集します ★★★
+   ・写真を追加 → photos に { src:"画像のURL", cap:"説明" } を足す
+   ・src を "" にすると「追加用の見本マス」になります
+   ===================================================================== */
+var IMG = "https://image.jimcdn.com/app/cms/image/transf/dimension=640x480:mode=crop:format=jpg/path/sa4c70deaa5976d3d/image/";
+const PAGE = {
+  photos: [
+    {src: HERO_IMG, cap:"BOSCO NEXT 集合写真"},
+    {src: IMG+"i40f8081a10853751/version/1760499494/image.jpg", cap:"2025 東京都大会 優勝🏆"},
+    {src: IMG+"ide35bf613a4fda0a/version/1758130414/image.jpg", cap:"2025 東京都大会"},
+    {src: IMG+"i149f4370d0156da4/version/1758332591/image.jpg", cap:"BOSCO NEXT"},
+    {src: IMG+"i86de3bbb5cb7813f/version/1758332591/image.jpg", cap:"BOSCO NEXT"},
+    {src: IMG+"ic73cc5c566366a3d/version/1737084319/image.jpg", cap:"2024 エスパルスハートフルカップ"},
+    {src: IMG+"i279c7c5d95993180/version/1521024346/image.jpg", cap:"ヨコハマぽるとカップ2014"},
+    {src: IMG+"i83c013dc8de88a59/version/1431687782/image.jpg", cap:"ホームグラウンド 下丸子公園"},
+    {src: IMG+"ic2fdceab0925d4f9/version/1431688868/image.jpg", cap:"交流試合＋キッズクリニック＆BBQ"},
+    {src: IMG+"i0bbda1acd3660129/version/1431687434/image.jpg", cap:"初の大阪遠征"}
+  ]
+};
+
+/* ===== 表示の仕組み（内容は gallery.json＝CMSで編集。読めない時は上の PAGE を表示）===== */
+function renderGallery(d){
+  var photos = (d && d.photos) ? d.photos : PAGE.photos;
+  document.getElementById("gallery").innerHTML = photos.map(function(p){
+    var inner = p.src
+      ? '<img src="'+esc(p.src)+'" alt="'+esc(p.cap||"")+'" loading="lazy"><span class="cap">'+esc(p.cap||"")+'</span>'
+      : '<span class="gallery-empty">＋ 画像を追加</span>';
+    return '<div class="gallery-item">'+inner+'</div>';
+  }).join("");
+  observeReveals();
+}
+loadJSON("gallery.json", function(d){ renderGallery(d); });
+</script>
+</body>
+</html>

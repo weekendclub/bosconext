@@ -1,0 +1,245 @@
+# ============================================================
+#  BOSCO NEXT CMS 設定
+#
+#  編集画面： https://weekendclub.github.io/bosconext/admin/
+#
+#  ▼ ログインを有効にするには「1回だけ」外部設定が必要です。
+#     手順は 編集ガイド.md の「編集画面(/admin)のログイン設定」を参照。
+#     → GitHubでOAuthアプリを作り、Netlify側に登録するだけ（無料）
+#
+#  ※ サイト本体は、このリポジトリ(weekendclub/bosconext)の直下にあります。
+#     そのため下の file: は bosconext/ を付けず、ファイル名だけを書きます。
+# ============================================================
+backend:
+  name: github                                   # GitHubアカウントでログインする方式
+  repo: weekendclub/bosconext                    # 対象リポジトリ
+  branch: main                                   # 保存先ブランチ
+  # ▼ 重要：ログイン(OAuth)の窓口はNetlifyを借りています。
+  #    Netlifyは「どのサイトの設定か」をドメインで判定するため、
+  #    GitHub Pages から開く場合はNetlify側のドメインを明示する必要があります。
+  #    これが無いと「Not Found」になります。
+  site_domain: bosconext.netlify.app
+  commit_messages:
+    create: 'Create {{collection}} "{{slug}}" - {{author-name}} <{{author-login}}> via CMS'
+    update: 'Update {{collection}} "{{slug}}" - {{author-name}} <{{author-login}}> via CMS'
+    delete: 'Delete {{collection}} "{{slug}}" - {{author-name}} <{{author-login}}> via CMS'
+    uploadMedia: 'Upload "{{path}}" - {{author-name}} <{{author-login}}> via CMS'
+    deleteMedia: 'Delete "{{path}}" - {{author-name}} <{{author-login}}> via CMS'
+
+# --- 参考：DecapBridgeを使う場合は、上の backend を消して下を使う -----------
+# backend:
+#   name: git-gateway
+#   repo: weekendclub/bosconext
+#   branch: main
+#   identity_url: https://auth.decapbridge.com/sites/【あなたのサイトID】
+#   gateway_url: https://gateway.decapbridge.com
+# ---------------------------------------------------------------------------
+
+locale: ja
+
+# 編集画面の「表示」ボタンから公開サイトへ飛べるようにする
+site_url: https://weekendclub.github.io/bosconext/
+display_url: https://weekendclub.github.io/bosconext/
+
+media_folder: images/uploads
+public_folder: images/uploads
+
+collections:
+  # ===== お知らせ =====
+  - name: news
+    label: お知らせ
+    files:
+      - name: news_list
+        label: お知らせ一覧
+        file: news.json
+        description: トップページに表示されるお知らせです。上にあるものほど新しく表示されます。
+        fields:
+          - label: お知らせ
+            name: items
+            label_singular: お知らせ
+            widget: list
+            summary: '{{fields.date}}｜{{fields.title}}'
+            fields:
+              - { label: 日付, name: date, widget: string, hint: '例：2026.7.20' }
+              - label: カテゴリ
+                name: tag
+                widget: select
+                default: info
+                options:
+                  - { label: 大会結果, value: result }
+                  - { label: 活動報告, value: report }
+                  - { label: お知らせ, value: info }
+              - { label: 見出し, name: title, widget: string }
+              - { label: 本文, name: body, widget: text }
+              - { label: 'リンク（任意）', name: link, widget: string, required: false, default: '' }
+              - { label: 'リンクの文字（任意）', name: linkText, widget: string, required: false, default: '' }
+
+  # ===== トップページの文章 =====
+  - name: home
+    label: トップの文章
+    files:
+      - name: home_content
+        label: トップページ
+        file: home.json
+        description: トップページの見出しや紹介文など。
+        fields:
+          - { label: 上の小さな英字, name: eyebrow, widget: string, required: false }
+          - { label: キャッチコピー, name: tagline, widget: string, hint: '{ } で囲んだ言葉がゴールドで強調されます' }
+          - { label: 最終更新日, name: updateDate, widget: string, required: false }
+          - { label: 'メイン写真（任意・空ならデフォルト写真）', name: heroPhoto, widget: image, required: false }
+          - { label: 写真の上の成績ラベル（大）, name: heroScoreMain, widget: string, required: false }
+          - { label: 写真の上の成績ラベル（小）, name: heroScoreSub, widget: string, required: false }
+          - { label: 成績バッジ, name: heroBadges, widget: list, required: false, hint: '1行ずつ追加できます' }
+          - { label: 流れるテロップ, name: ticker, widget: list, required: false }
+          - { label: 'BOSCO NEXTとは（段落ごとに追加）', name: about, widget: list }
+          - { label: 'メンバー募集の文（段落ごと）', name: recruit, widget: list }
+          - { label: 対戦募集の文, name: taisen, widget: text }
+
+  # ===== チーム・選手 =====
+  - name: team
+    label: チーム・選手
+    files:
+      - name: team_content
+        label: チーム＆選手
+        file: team.json
+        description: チーム紹介・チームデータ・選手・スタッフ。
+        fields:
+          - { label: 'チーム紹介（段落ごと）', name: lead, widget: list }
+          - label: チームデータ
+            name: data
+            label_singular: 項目
+            widget: list
+            summary: '{{fields.k}}：{{fields.v}}'
+            fields:
+              - { label: 項目名, name: k, widget: string, hint: '例：発足日' }
+              - { label: 内容, name: v, widget: string }
+          - label: 選手
+            name: players
+            label_singular: 選手
+            widget: list
+            summary: 'No.{{fields.no}} {{fields.name}}'
+            fields:
+              - { label: 背番号, name: no, widget: string, required: false, hint: '無ければ空でOK' }
+              - { label: 名前・ニックネーム, name: name, widget: string }
+              - { label: 'ポジション（任意）', name: pos, widget: string, required: false, default: '' }
+              - { label: '写真（任意）', name: photo, widget: image, required: false }
+          - label: スタッフ
+            name: staff
+            label_singular: スタッフ
+            widget: list
+            summary: '{{fields.role}}：{{fields.name}}'
+            fields:
+              - { label: 役割, name: role, widget: string, hint: '例：監督' }
+              - { label: お名前, name: name, widget: string }
+              - { label: '写真（任意）', name: photo, widget: image, required: false }
+
+  # ===== スケジュール =====
+  - name: schedule
+    label: スケジュール
+    files:
+      - name: schedule_content
+        label: スケジュール
+        file: schedule.json
+        description: 「これからの予定」と「これまでの結果」。予定の一番上が「次の一戦」として大きく表示されます。
+        fields:
+          - label: これからの予定
+            name: upcoming
+            label_singular: 予定
+            widget: list
+            summary: '{{fields.date}} {{fields.title}}'
+            fields:
+              - { label: 日付, name: date, widget: string, hint: '例：7.19' }
+              - { label: 年・曜日など, name: sub, widget: string, required: false, hint: '例：2026 ㈰' }
+              - { label: 大会名・試合名, name: title, widget: string }
+              - { label: 場所, name: place, widget: string, required: false }
+              - { label: '場所のリンク（任意）', name: placeLink, widget: string, required: false, default: '' }
+              - { label: 'ひとこと（任意）', name: note, widget: text, required: false, default: '' }
+          - label: これまでの結果
+            name: results
+            label_singular: 結果
+            widget: list
+            summary: '{{fields.date}} {{fields.title}}'
+            fields:
+              - { label: 日付, name: date, widget: string }
+              - { label: 大会名・試合名, name: title, widget: string }
+              - { label: 'スコア・結果（例：3-1／準優勝🥈）', name: score, widget: string, required: false, default: '' }
+              - label: 勝敗
+                name: wl
+                widget: select
+                required: false
+                default: ''
+                options:
+                  - { label: '（なし）', value: '' }
+                  - { label: 勝ち, value: w }
+                  - { label: 負け, value: l }
+                  - { label: 引き分け, value: d }
+              - { label: 'ひとこと（任意）', name: note, widget: text, required: false, default: '' }
+
+  # ===== 大会戦績 =====
+  - name: tournaments
+    label: 大会戦績
+    files:
+      - name: tournaments_content
+        label: 大会戦績
+        file: tournaments.json
+        description: 大会の戦績（新しいものを上に）。
+        fields:
+          - { label: '紹介文（段落ごと）', name: lead, widget: list, required: false }
+          - label: 戦績
+            name: history
+            label_singular: 大会
+            widget: list
+            summary: '{{fields.date}} {{fields.title}}'
+            fields:
+              - { label: 日付, name: date, widget: string, hint: '例：2026.5.31' }
+              - { label: 大会名, name: title, widget: string }
+              - { label: '会場（任意）', name: meta, widget: string, required: false, default: '' }
+              - label: 結果
+                name: result
+                widget: select
+                default: ''
+                options:
+                  - { label: '（なし）', value: '' }
+                  - { label: 優勝, value: win }
+                  - { label: 準優勝, value: '2nd' }
+                  - { label: 出場, value: join }
+              - { label: 'ひとこと（任意）', name: note, widget: text, required: false, default: '' }
+
+  # ===== フォトギャラリー =====
+  - name: gallery
+    label: フォトギャラリー
+    files:
+      - name: gallery_content
+        label: フォトギャラリー
+        file: gallery.json
+        description: 写真を追加・削除できます。
+        fields:
+          - label: 写真
+            name: photos
+            label_singular: 写真
+            widget: list
+            summary: '{{fields.cap}}'
+            fields:
+              - { label: 画像, name: src, widget: image, hint: '画像をアップロードしてください' }
+              - { label: '説明（任意）', name: cap, widget: string, required: false, default: '' }
+
+  # ===== リンク =====
+  - name: links
+    label: リンク
+    files:
+      - name: links_content
+        label: リンク集
+        file: links.json
+        description: SNSや関連団体などのリンク。
+        fields:
+          - label: リンク
+            name: linklist
+            label_singular: リンク
+            widget: list
+            summary: '{{fields.nm}}'
+            fields:
+              - { label: 'アイコン（絵文字）', name: ic, widget: string, required: false, default: '🔗' }
+              - { label: 名前, name: nm, widget: string }
+              - { label: '説明（任意）', name: ds, widget: string, required: false, default: '' }
+              - { label: リンク先URL, name: url, widget: string }
+              - { label: 'ボタンの文字（任意）', name: go, widget: string, required: false, default: '開く' }

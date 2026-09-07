@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>リンク｜BOSCO NEXT</title>
+<meta name="description" content="BOSCO NEXT（ボスコ ネクスト）のSNS・関連団体などのリンク集。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Dela+Gothic+One&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="canonical" href="https://weekendclub.github.io/bosconext/links.html">
+<meta property="og:url" content="https://weekendclub.github.io/bosconext/links.html">
+</head>
+<body>
+
+<header id="site-header"></header>
+<nav class="mobile-menu" id="mobileMenu"></nav>
+
+<section class="subhero">
+  <div class="wrap subhero-inner">
+    <div class="breadcrumb"><a href="index.html">ホーム</a> ／ リンク</div>
+    <span class="kicker">Links</span>
+    <h1>リンク</h1>
+    <p>SNSや関連団体などのリンクをまとめています。</p>
+  </div>
+</section>
+
+<section class="block">
+  <div class="wrap">
+    <div class="sns-grid reveal" id="links"></div>
+    <p class="cnote reveal" style="margin-top:20px">※「（サンプル）」のカードは、関連リンクを追加するための見本です。linklist を編集してお使いください。</p>
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="wrap">
+    <h2>フォローよろしくお願いします</h2>
+    <p>最新の活動はSNSで随時お届けしています。</p>
+    <div class="hero-cta">
+      <a class="btn btn-primary" data-link="join">⚽ 体験・入部のお問い合わせ</a>
+      <a class="btn btn-ghost" data-link="contact">お問い合わせ</a>
+    </div>
+  </div>
+</section>
+
+<footer id="site-footer"></footer>
+<button class="to-top" id="toTop" aria-label="上に戻る">↑</button>
+
+<script src="site.js"></script>
+<script>
+/* =====================================================================
+   ★★★ このページの内容はここを編集します ★★★
+   ・リンクを追加/変更 → linklist の { } を編集する
+   ===================================================================== */
+const PAGE = {
+  linklist: [
+    {ic:"𝕏",  nm:"X（旧Twitter）", ds:"練習風景や近況を発信中", url:SITE_INFO.links.x,         go:"@BOSCONEXT"},
+    {ic:"📷", nm:"Instagram",      ds:"試合・合宿の写真をお届け", url:SITE_INFO.links.instagram, go:"@bosconext_futsal"},
+    {ic:"📝", nm:"note",           ds:"ボスコネクストとはどんなチームか（マッキー）", url:SITE_INFO.links.note, go:"記事を読む"},
+    {ic:"📖", nm:"過去ブログ",      ds:"これまでの活動の記録（Ameba）", url:SITE_INFO.links.blog,      go:"ブログを見る"},
+    {ic:"🏆", nm:"日本ソーシャルフットボール協会（JSFA）", ds:"ソーシャルフットボールの統括団体", url:"https://jsfa-official.jp/", go:"公式サイトへ"},
+    {ic:"👕", nm:"ユニフォーム rexva", ds:"チームのユニフォーム", url:"https://www.instagram.com/p/DGDHDEYy_HX/", go:"投稿を見る"},
+    {ic:"🔗", nm:"関連リンク（サンプル）", ds:"説明をここに記入", url:"#", go:"リンクへ"}
+  ]
+};
+
+/* ===== 表示の仕組み（内容は links.json＝CMSで編集。読めない時は上の PAGE を表示）===== */
+function renderLinks(d){
+  var list = (d && d.linklist) ? d.linklist : PAGE.linklist;
+  document.getElementById("links").innerHTML = list.map(function(s){
+    return '<a class="sns-card" href="'+esc(s.url)+'" target="_blank" rel="noopener">'+
+      '<span class="ic">'+esc(s.ic||"🔗")+'</span><span class="nm">'+esc(s.nm)+'</span>'+
+      '<span class="ds">'+esc(s.ds)+'</span><span class="go">'+esc(s.go||"開く")+' →</span></a>';
+  }).join("");
+  observeReveals();
+}
+loadJSON("links.json", function(d){ renderLinks(d); });
+</script>
+</body>
+</html>

@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BOSCO NEXT｜東京のソーシャルフットボールクラブ</title>
+<meta name="description" content="東京近辺で活動するソーシャルフットボールのクラブチーム、BOSCO NEXT（ボスコ ネクスト）の公式ホームページ。精神障がいのある方を中心に、誰もがフットサルを楽しめるチームです。体験・入部・対戦のお問い合わせはお気軽に。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Dela+Gothic+One&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="canonical" href="https://weekendclub.github.io/bosconext/">
+<meta property="og:url" content="https://weekendclub.github.io/bosconext/">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SportsTeam","name":"BOSCO NEXT","sport":"Futsal","description":"東京近辺で活動するソーシャルフットボールのクラブチーム。","url":"https://weekendclub.github.io/bosconext/"}</script>
+</head>
+<body>
+
+<header id="site-header"></header>
+<nav class="mobile-menu" id="mobileMenu"></nav>
+
+<!-- ========== ヒーロー ========== -->
+<section class="hero" id="top">
+  <div class="hero-glow" aria-hidden="true"></div>
+  <div class="hero-glow g2" aria-hidden="true"></div>
+  <div class="wrap hero-inner">
+    <div>
+      <span class="eyebrow"><span class="dot"></span><span id="eyebrowText"></span></span>
+      <h1><span id="clubName"></span><span class="ja" id="clubNameJa"></span></h1>
+      <p class="tagline" id="tagline"></p>
+      <div class="hero-badges" id="heroBadges"></div>
+      <div class="hero-cta">
+        <a class="btn btn-primary" data-link="join">⚽ 体験・入部のお問い合わせ</a>
+        <a class="btn btn-ghost" href="#about">チームを知る</a>
+      </div>
+      <p class="hero-meta" id="updateMeta"></p>
+    </div>
+    <div class="hero-photo">
+      <div class="frame"><img id="heroPhoto" alt="BOSCO NEXTの集合写真"></div>
+      <div class="score" id="heroScore"></div>
+    </div>
+  </div>
+</section>
+
+<div class="ticker"><div class="ticker-track" id="ticker"></div></div>
+
+<!-- ========== 戦績・チームデータ（数字でひと目で） ========== -->
+<section class="stats-band" aria-label="チームの数字">
+  <div class="stats-inner" id="statsBand">
+    <div class="stat"><span class="num" data-count="3"><span class="v">0</span><span class="suf">連覇</span></span><span class="lbl">東京都大会 制覇</span></div>
+    <div class="stat"><span class="num" data-count="13" data-since="2013"><span class="v">0</span><span class="suf">年</span></span><span class="lbl">活動年数（2013〜）</span></div>
+    <div class="stat"><span class="num" data-count="15"><span class="v">0</span><span class="suf">名</span></span><span class="lbl">チームメンバー</span></div>
+    <div class="stat"><span class="num" data-count="1"><span class="v">0</span><span class="suf">名</span></span><span class="lbl">強化指定選手 輩出</span></div>
+  </div>
+</section>
+
+<!-- ========== お知らせ ========== -->
+<section class="block" id="news">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="kicker">News</span>
+      <h2 class="sec-title">お知らせ・活動報告</h2>
+      <p class="sec-lead">大会結果や練習・合宿のレポートなど、最新の活動をお届けします。</p>
+    </div>
+    <div class="news-grid" id="newsList"></div>
+  </div>
+</section>
+
+<!-- ========== 次の試合・スケジュール ========== -->
+<section class="block" id="schedule-sec">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="kicker">Schedule</span>
+      <h2 class="sec-title">次の試合・スケジュール</h2>
+      <p class="sec-lead">直近の大会・試合予定です。<a href="schedule.html" style="color:var(--brand);font-weight:700;border-bottom:1px solid var(--brand)">スケジュール一覧へ</a></p>
+    </div>
+    <div class="reveal" id="nextMatch"></div>
+    <div class="sched-list reveal" id="scheduleList"></div>
+  </div>
+</section>
+
+<!-- ========== BOSCO NEXTとは ========== -->
+<section class="block" id="about">
+  <div class="wrap about-grid">
+    <div class="about-body reveal">
+      <span class="kicker">About Us</span>
+      <h2 class="sec-title">BOSCO NEXTとは</h2>
+      <div id="aboutBody"></div>
+      <div style="margin-top:24px"><a class="btn btn-gold" href="team.html">チーム＆選手を見る</a></div>
+    </div>
+    <div class="about-photo reveal">
+      <div class="frame"><img id="aboutPhoto" alt="BOSCO NEXTのチーム写真"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== 仲間募集 ========== -->
+<section class="block" id="join">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="kicker">Join Us</span>
+      <h2 class="sec-title">仲間・対戦相手 募集中</h2>
+    </div>
+    <div class="join-grid">
+      <div class="join-card reveal">
+        <h3>👋 メンバー募集</h3>
+        <div id="recruitBody"></div>
+        <div class="join-btns">
+          <a class="btn btn-primary" data-link="join">入部・体験のお問い合わせ</a>
+          <a class="btn btn-outline" data-link="contact">お問い合わせ</a>
+        </div>
+      </div>
+      <div class="taisen reveal">
+        <h4>⚔️ 対戦求む</h4>
+        <p id="taisenBody"></p>
+        <a class="btn btn-outline" data-link="contact">お問い合わせへ</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== SNS ========== -->
+<section class="block" id="links">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="kicker">Follow</span>
+      <h2 class="sec-title">SNS・関連ページ</h2>
+      <p class="sec-lead">練習風景や近況はSNSで随時更新中。<a href="links.html" style="color:var(--brand);font-weight:700;border-bottom:1px solid var(--brand)">リンク集へ</a></p>
+    </div>
+    <div class="sns-grid reveal" id="snsLinks"></div>
+  </div>
+</section>
+
+<footer id="site-footer"></footer>
+<button class="to-top" id="toTop" aria-label="上に戻る">↑</button>
+
+<!-- チーム写真（差し替え方は 編集ガイド.md の「写真」を参照） -->
+<script src="team-photo.js"></script>
+<!-- 全ページ共通（メニュー・フッター・リンクはここで管理） -->
+<script src="site.js"></script>
+
+<script>
+/* =====================================================================
+   ★★★ このページ（トップ）の内容はここを編集します ★★★
+   ・お知らせ → 編集画面（/admin）で追加・編集します（このファイル下の news は予備）
+   ・試合予定 → schedule の { } をコピー（一番上が「次の一戦」）
+   ・文章     → " " の中を書き換える
+   ※ メニュー・SNS・チーム名は site.js の SITE_INFO で管理しています
+   ===================================================================== */
+const PAGE = {
+  clubName:   "BOSCO NEXT",
+  clubNameJa: "ボスコ ネクスト ｜ 東京のソーシャルフットボールクラブ",
+  eyebrow:    "ソーシャルフットボール / FUTSAL CLUB",
+  tagline:    'どんな壁も、{乗り越えられる}。',   /* { } で囲んだ言葉がゴールドで強調されます */
+  updateDate: "2026.6.5",
+
+  heroPhoto:  HERO_IMG,
+  heroScoreMain: "準優勝 🥈",
+  heroScoreSub:  "ソーシャルフットボール東京都大会 2026",
+  heroBadges: [
+    "2026 東京都大会 準優勝 🥈",
+    "強化指定選手 選出 ⚡",
+    "全国大会 予選 関東大会 出場 🔥"
+  ],
+  ticker: [
+    "🥈 ソーシャルフットボール東京都大会2026 準優勝！",
+    "🔥 次は関東大会 7/19㈰ ＠サイデン化学アリーナさいたま",
+    "📣 プレイヤー・マネージャー・サポーター募集中！",
+    "⚽ 練習試合の対戦相手も募集しています"
+  ],
+
+  /* お知らせ（新しいものを上に） tag: result=大会結果 / report=活動報告 / info=お知らせ */
+  news: [
+    {
+      date: "2026.5.31", tag: "result",
+      title:"ソーシャルフットボール東京都大会2026 準優勝🥈",
+      body: "＠明治学院大学白金キャンパス。大会4連覇とはなりませんでしたが、最後まで全力で闘い抜きました。応援ありがとうございました！大会運営スタッフ・明治学院大学の皆様にも心より感謝申し上げます。",
+      link: "", linkText: ""
+    },
+    {
+      date: "2026.4.25–26", tag: "report",
+      title:"BOSCO NEXT 長野合宿⚽",
+      body: "いいづなコネクトWEST・更埴体育館などをお借りしました。とても良い環境に感謝です。1日目は強度高くトレーニング、2日目は田中大智さんにお越しいただき学び多い時間に。ユニフォームはrexvaです！",
+      link: "https://www.instagram.com/p/DGDHDEYy_HX/", linkText: "rexva のInstagramを見る"
+    },
+    {
+      date: "2026.2.21", tag: "info",
+      title:"2026年度 強化指定選手に BOSCO NEXTメンバーが選出！",
+      body: "2026年度ソーシャルフットボール強化指定選手セレクションに、BOSCO NEXTのメンバーが合格しました。今後の応援をよろしくお願いします😁",
+      link: "https://jsfa-official.jp/posts/5Of34ngU", linkText: "JSFA 合格者発表を見る"
+    }
+  ],
+
+  /* 試合・スケジュール（一番上が「次の一戦」として大きく表示） */
+  schedule: [
+    {
+      date: "7.19", sub: "2026 ㈰",
+      title:"JIFF 第6回ソーシャルフットボール全国大会 予選 関東大会",
+      place:"サイデン化学アリーナさいたま（さいたま市記念総合体育館）",
+      placeLink:"http://sai-kinen-spomachi.jp/",
+      note: "全国大会〈神奈川県／11/21〉の出場をかけた予選です。応援よろしくお願いします🔥"
+    }
+  ],
+
+  about: [
+    "BOSCO NEXT（ボスコ ネクスト）は、東京を拠点に活動するソーシャルフットボールのクラブチームです。",
+    "ソーシャルフットボールは、精神障がいのある方を中心に、誰もがフットサルを楽しみ、仲間とともに成長していくスポーツ。年齢や経験を問わず、一人ひとりが自分らしくプレーできる場所です。",
+    "勝利を目指して本気で闘う一方で、安心して挑戦できるチームであることを大切にしています。「どんな壁も乗り越えられる」——その言葉を合言葉に、ピッチの上でも外でも、仲間と支え合いながら前へ進んでいます。"
+  ],
+  recruit: [
+    "プレイヤーはもちろん、マネージャーや支えてくださる方も大歓迎です。一緒にチームを盛り上げ、闘ってくれる仲間を募集しています。",
+    "体験・練習参加をご希望の方は、お問い合わせからお気軽にご連絡ください。見学だけでも大丈夫です。"
+  ],
+  taisen: "練習試合の対戦相手を募集中です。日程・場所などはお問い合わせよりご連絡ください。"
+};
+
+/* ===== 表示の仕組み（基本さわらなくてOK） ===== */
+const $ = function(id){return document.getElementById(id);};
+const tagName = {result:"大会結果", report:"活動報告", info:"お知らせ"};
+
+/* トップの文章・写真は home.json（CMSで編集）。無い項目は下の PAGE を使用 */
+function renderHome(h){
+  $("clubName").textContent = PAGE.clubName;
+  $("clubNameJa").textContent = PAGE.clubNameJa;
+  $("eyebrowText").textContent = h.eyebrow || PAGE.eyebrow;
+  $("tagline").innerHTML = esc(h.tagline || PAGE.tagline).replace(/\{(.+?)\}/g,'<span class="hl">$1</span>');
+  $("updateMeta").textContent = "最終更新：" + (h.updateDate || PAGE.updateDate);
+  var photo = h.heroPhoto || PAGE.heroPhoto;
+  $("heroPhoto").src = photo;
+  $("aboutPhoto").src = photo;
+  var sm = (h.heroScoreMain!=null && h.heroScoreMain!=="") ? h.heroScoreMain : PAGE.heroScoreMain;
+  var ss = (h.heroScoreSub!=null && h.heroScoreSub!=="") ? h.heroScoreSub : PAGE.heroScoreSub;
+  $("heroScore").innerHTML = esc(sm) + '<small>' + esc(ss) + '</small>';
+  var badges = (h.heroBadges && h.heroBadges.length) ? h.heroBadges : PAGE.heroBadges;
+  $("heroBadges").innerHTML = badges.map(function(b){return '<span>'+esc(b)+'</span>';}).join("");
+  var ticker = (h.ticker && h.ticker.length) ? h.ticker : PAGE.ticker;
+  var tk = ticker.map(function(t){return '<span>'+esc(t)+'</span>';}).join("");
+  $("ticker").innerHTML = tk + tk;
+  var about = (h.about && h.about.length) ? h.about : PAGE.about;
+  $("aboutBody").innerHTML = about.map(function(p){return '<p>'+esc(p)+'</p>';}).join("");
+  var recruit = (h.recruit && h.recruit.length) ? h.recruit : PAGE.recruit;
+  $("recruitBody").innerHTML = recruit.map(function(p){return '<p>'+esc(p)+'</p>';}).join("");
+  $("taisenBody").textContent = h.taisen || PAGE.taisen;
+}
+loadJSON("home.json", function(d){ renderHome(d || {}); });
+
+function renderNewsCard(n){
+  return '<article class="news-card reveal">'+
+    '<div class="news-top"><span class="news-date">'+esc(n.date)+'</span>'+
+    '<span class="tag '+n.tag+'">'+esc(tagName[n.tag]||n.tag)+'</span></div>'+
+    '<h3>'+esc(n.title)+'</h3>'+
+    '<p>'+esc(n.body).replace(/\n/g,"<br>")+'</p>'+
+    (n.link?'<a class="more" href="'+esc(n.link)+'" target="_blank" rel="noopener">'+esc(n.linkText||"くわしく見る")+'</a>':'')+
+    '</article>';
+}
+/* お知らせは news.json（CMSで編集）を読み込んで表示します。
+   読み込めない場合（例：パソコンでファイルを直接ひらいたプレビュー時）は、上の PAGE.news を表示します。 */
+fetch('news.json')
+  .then(function(r){ if(!r.ok) throw 0; return r.json(); })
+  .then(function(data){
+    var items = (data && data.items && data.items.length) ? data.items : PAGE.news;
+    $("newsList").innerHTML = items.map(renderNewsCard).join("");
+    observeReveals();
+  })
+  .catch(function(){
+    $("newsList").innerHTML = PAGE.news.map(renderNewsCard).join("");
+    observeReveals();
+  });
+
+function renderHomeSchedule(s){
+  s = s || [];
+  if(!s.length){ $("nextMatch").style.display="none"; $("scheduleList").innerHTML=""; return; }
+  $("nextMatch").style.display="";
+  var n = s[0];
+  $("nextMatch").innerHTML =
+    '<div class="next-match"><span class="nm-flag">⚽ 次の一戦 / NEXT MATCH</span>'+
+    '<div class="nm-grid"><div class="nm-date"><div class="d">'+esc(n.date)+'</div><div class="m">'+esc(n.sub||"")+'</div></div>'+
+    '<div class="nm-info"><h3>'+esc(n.title)+'</h3>'+
+    '<div class="place">📍 '+(n.placeLink?'<a href="'+esc(n.placeLink)+'" target="_blank" rel="noopener">'+esc(n.place)+'</a>':esc(n.place))+'</div>'+
+    (n.note?'<p class="note">'+esc(n.note)+'</p>':'')+'</div></div></div>';
+  $("scheduleList").innerHTML = s.slice(1).map(function(e){
+    return '<div class="sched-row"><div class="sd">'+esc(e.date)+' <small>'+esc(e.sub||"")+'</small></div>'+
+      '<div><div class="st">'+esc(e.title)+'</div>'+(e.place?'<div class="sp">📍 '+esc(e.place)+'</div>':'')+'</div></div>';
+  }).join("");
+}
+loadJSON("schedule.json", function(d){ renderHomeSchedule((d && d.upcoming) ? d.upcoming : PAGE.schedule); });
+
+/* 文章（about / recruit / taisen）は renderHome() でまとめて表示しています */
+
+$("snsLinks").innerHTML = [
+  {ic:"𝕏", nm:"X（旧Twitter）", ds:"練習風景や近況を発信中", url:SITE_INFO.links.x, go:"@BOSCONEXT"},
+  {ic:"📷", nm:"Instagram", ds:"試合・合宿の写真をお届け", url:SITE_INFO.links.instagram, go:"@bosconext_futsal"},
+  {ic:"📝", nm:"note", ds:"ボスコネクストとはどんなチームなのか（マッキー）", url:SITE_INFO.links.note, go:"記事を読む"},
+  {ic:"📖", nm:"過去ブログ", ds:"これまでの活動の記録（Ameba）", url:SITE_INFO.links.blog, go:"ブログを見る"}
+].map(function(s){
+  return '<a class="sns-card" href="'+esc(s.url)+'" target="_blank" rel="noopener">'+
+    '<span class="ic">'+s.ic+'</span><span class="nm">'+esc(s.nm)+'</span>'+
+    '<span class="ds">'+esc(s.ds)+'</span><span class="go">'+esc(s.go)+' →</span></a>';
+}).join("");
+
+observeReveals();
+
+/* ===== 戦績バンドの数字をカウントアップ ===== */
+(function(){
+  var band = document.getElementById("statsBand");
+  if(!band) return;
+  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion:reduce)").matches;
+  var nums = band.querySelectorAll(".num");
+  /* 活動年数は今年から自動計算（2013年〜） */
+  nums.forEach(function(n){
+    var since = n.getAttribute("data-since");
+    if(since){ n.setAttribute("data-count", String(new Date().getFullYear() - parseInt(since,10))); }
+  });
+  function run(n){
+    var target = parseInt(n.getAttribute("data-count"),10) || 0;
+    var el = n.querySelector(".v");
+    if(reduce){ el.textContent = target; return; }
+    var start = null, dur = 1100;
+    function step(t){
+      if(start===null) start = t;
+      var p = Math.min((t-start)/dur, 1);
+      var eased = 1 - Math.pow(1-p, 3);
+      el.textContent = Math.round(target * eased);
+      if(p<1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){ run(e.target); io.unobserve(e.target); }
+    });
+  },{threshold:.4});
+  nums.forEach(function(n){ io.observe(n); });
+})();
+</script>
+</body>
+</html>

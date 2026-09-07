@@ -1,0 +1,10 @@
+{
+  "linklist": [
+    {"ic": "𝕏",  "nm": "X（旧Twitter）", "ds": "練習風景や近況を発信中", "url": "https://x.com/BOSCONEXT", "go": "@BOSCONEXT"},
+    {"ic": "📷", "nm": "Instagram", "ds": "試合・合宿の写真をお届け", "url": "https://www.instagram.com/bosconext_futsal/", "go": "@bosconext_futsal"},
+    {"ic": "📝", "nm": "note", "ds": "ボスコネクストとはどんなチームか（マッキー）", "url": "https://note.com/mackeyfootball/n/ndbd9daead388", "go": "記事を読む"},
+    {"ic": "📖", "nm": "過去ブログ", "ds": "これまでの活動の記録（Ameba）", "url": "http://ameblo.jp/bosconext/", "go": "ブログを見る"},
+    {"ic": "🏆", "nm": "日本ソーシャルフットボール協会（JSFA）", "ds": "ソーシャルフットボールの統括団体", "url": "https://jsfa-official.jp/", "go": "公式サイトへ"},
+    {"ic": "👕", "nm": "ユニフォーム rexva", "ds": "チームのユニフォーム", "url": "https://www.instagram.com/p/DGDHDEYy_HX/", "go": "投稿を見る"}
+  ]
+}

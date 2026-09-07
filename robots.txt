@@ -1,0 +1,18 @@
+# ============================================================
+#  robots.txt（このリポジトリ直下 = サイトのルート）
+#
+#  このファイルが「検索エンジンへの案内」として実際に使われるのは
+#  Netlify のドメイン（https://bosconext.netlify.app/robots.txt）です。
+#
+#  GitHub Pages 側（https://weekendclub.github.io/robots.txt）は
+#  weekendclub/weekendclub.github.io リポジトリ直下のものが使われます。
+#  そちらには既に「Disallow: /bosconext/admin/」が入っています。
+# ============================================================
+User-agent: *
+Allow: /
+
+# 編集画面は検索結果に出さない
+Disallow: /admin/
+
+# 正規URL（canonical）は GitHub Pages 側なので、サイトマップもそちらを案内する
+Sitemap: https://weekendclub.github.io/bosconext/sitemap.xml

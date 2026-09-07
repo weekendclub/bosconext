@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>新聞・雑誌切り抜き｜BOSCO NEXT</title>
+<meta name="description" content="BOSCO NEXT（ボスコ ネクスト）が掲載された新聞・雑誌・Web記事などのまとめ。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Dela+Gothic+One&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="canonical" href="https://weekendclub.github.io/bosconext/press.html">
+<meta property="og:url" content="https://weekendclub.github.io/bosconext/press.html">
+</head>
+<body>
+
+<header id="site-header"></header>
+<nav class="mobile-menu" id="mobileMenu"></nav>
+
+<section class="subhero">
+  <div class="wrap subhero-inner">
+    <div class="breadcrumb"><a href="index.html">ホーム</a> ／ 新聞・雑誌切り抜き</div>
+    <span class="kicker">Press</span>
+    <h1>新聞・雑誌切り抜き</h1>
+    <p>新聞・雑誌・Web記事などで取り上げていただいた情報をまとめています。</p>
+  </div>
+</section>
+
+<section class="block">
+  <div class="wrap">
+    <div class="lead-block reveal" id="lead"></div>
+    <div class="cliplist reveal" id="clips" style="margin-top:24px"></div>
+    <p class="cnote reveal" style="margin-top:20px">※ 下の一覧はサンプルです。掲載日・媒体名・見出し・リンクを clips に追記してください。</p>
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="wrap">
+    <h2>取材・掲載のご相談</h2>
+    <p>取材やメディア掲載に関するお問い合わせもお気軽にどうぞ。</p>
+    <div class="hero-cta">
+      <a class="btn btn-primary" data-link="contact">お問い合わせ</a>
+      <a class="btn btn-ghost" href="links.html">SNSを見る</a>
+    </div>
+  </div>
+</section>
+
+<footer id="site-footer"></footer>
+<button class="to-top" id="toTop" aria-label="上に戻る">↑</button>
+
+<script src="site.js"></script>
+<script>
+/* =====================================================================
+   ★★★ このページの内容はここを編集します ★★★
+   ・掲載情報を追加 → clips の { } をコピーして上に貼る（新しい順）
+   ・リンクが無いときは url を "" にすると「リンクへ」ボタンは出ません
+   ===================================================================== */
+const PAGE = {
+  clips: [
+    {date:"20XX.XX", outlet:"媒体名", title:"見出し・タイトルをここに（サンプル）", url:""},
+    {date:"20XX.XX", outlet:"媒体名", title:"見出し・タイトルをここに（サンプル）", url:""}
+  ]
+};
+
+/* ===== 表示の仕組み ===== */
+document.getElementById("lead").innerHTML =
+  '<p>これまでに新聞・雑誌・Webメディアなどで紹介していただいた記事をまとめています。</p>';
+
+var clips = PAGE.clips || [];
+document.getElementById("clips").innerHTML = clips.length
+  ? clips.map(function(c){
+      return '<div class="clip"><span class="cd">'+esc(c.date)+'</span>'+
+        '<span class="outlet">'+esc(c.outlet)+'</span>'+
+        '<span class="ct">'+esc(c.title)+'</span>'+
+        (c.url?'<a class="cmore" href="'+esc(c.url)+'" target="_blank" rel="noopener">リンクへ →</a>':'<span></span>')+
+        '</div>';
+    }).join("")
+  : '<p style="color:var(--ink-soft)">現在、掲載情報はありません。</p>';
+
+observeReveals();
+</script>
+</body>
+</html>
