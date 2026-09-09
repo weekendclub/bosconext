@@ -264,6 +264,21 @@ section.block{padding:clamp(56px,8vw,96px) 0}
 
 /* ---------- クラブ理念 ---------- */
 #values{background:linear-gradient(180deg,var(--paper),#efe9db)}
+/* 見出しの右に「BOSCO」のワードマークを置く */
+.values-head{display:grid;grid-template-columns:1fr auto;gap:24px 46px;align-items:end}
+.bosco-key{text-align:right;max-width:min(34em,46vw);justify-self:end}
+.bosco-mark{
+  font-family:"Anton",sans-serif;line-height:1;color:var(--brand);
+  font-size:clamp(2rem,5.6vw,3.3rem);
+  letter-spacing:.17em;margin-right:-.17em;   /* 字間の余りぶんを戻して右端を揃える */
+  text-shadow:0 10px 26px rgba(212,32,42,.2);
+}
+/* BO / S / CO の区切りを、ゴールドの下線で示す */
+.bosco-mark .seg{position:relative;display:inline-block;padding-bottom:.26em}
+.bosco-mark .seg::after{content:"";position:absolute;left:0;right:.17em;bottom:0;
+  height:3px;border-radius:2px;background:var(--grad-gold)}
+.bosco-note{margin-top:14px;font-size:.85rem;line-height:1.75;color:var(--ink-soft)}
+
 .values-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
 .value-card{
   position:relative;overflow:hidden;
@@ -276,13 +291,18 @@ section.block{padding:clamp(56px,8vw,96px) 0}
   background:var(--grad-red);transition:width .25s ease}
 .value-card:hover{transform:translateY(-6px);box-shadow:var(--shadow);border-color:rgba(212,32,42,.3)}
 .value-card:hover::before{width:8px}
-/* 右上のうっすらした通し番号 */
-.value-card .v-no{
-  position:absolute;right:16px;top:6px;pointer-events:none;
-  font-family:"Anton",sans-serif;font-size:4.4rem;line-height:1;
-  color:rgba(212,32,42,.08);letter-spacing:.02em;
+/* 絵文字（左）と、BOSCOの頭文字バッジ（右）を1行に */
+.value-card .v-top{display:flex;align-items:center;gap:12px;margin-bottom:14px;min-height:44px}
+.value-card .v-ic{font-size:1.9rem;line-height:1}
+.value-card .v-letter{
+  margin-left:auto;flex:none;
+  min-width:48px;height:40px;padding:.08em 14px 0;border-radius:999px;
+  display:inline-flex;align-items:center;justify-content:center;
+  font-family:"Anton",sans-serif;font-size:1.3rem;line-height:1;letter-spacing:.04em;
+  background:var(--grad-gold);color:var(--dark-900);box-shadow:var(--shadow-sm);
+  transition:transform .25s ease, box-shadow .25s ease;
 }
-.value-card .v-ic{display:block;font-size:1.9rem;line-height:1;margin-bottom:14px}
+.value-card:hover .v-letter{transform:scale(1.08) rotate(-5deg);box-shadow:var(--glow-gold)}
 .value-card .v-en{
   display:block;font-family:"Anton",sans-serif;color:var(--brand);
   font-size:clamp(1.2rem,3.2vw,1.45rem);letter-spacing:.07em;text-transform:uppercase;
@@ -359,6 +379,9 @@ footer{background:var(--dark-900);color:rgba(255,255,255,.8);padding:54px 0 30px
   .about-photo img{height:300px}
   .join-grid{grid-template-columns:1fr}
   .values-grid{grid-template-columns:1fr 1fr}
+  .values-head{grid-template-columns:1fr;gap:22px}
+  .bosco-key{text-align:left;justify-self:start;max-width:100%}
+  .bosco-mark{margin-right:0}
 }
 @media(max-width:760px){
   .nav-links,.nav-cta{display:none}
@@ -367,7 +390,6 @@ footer{background:var(--dark-900);color:rgba(255,255,255,.8);padding:54px 0 30px
   .nm-date{border-right:0;border-bottom:1px solid rgba(255,255,255,.2);padding-right:0;padding-bottom:18px;display:flex;align-items:baseline;gap:14px;justify-content:center}
   .sched-row{grid-template-columns:1fr;gap:6px}
   .values-grid{grid-template-columns:1fr}
-  .value-card .v-no{font-size:3.4rem;right:14px}
 }
 @media(prefers-reduced-motion:reduce){
   *{animation:none!important;scroll-behavior:auto!important;transition:none!important}

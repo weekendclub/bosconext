@@ -96,10 +96,17 @@
 <!-- ========== クラブ理念 ========== -->
 <section class="block" id="values">
   <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="kicker">Our Values</span>
-      <h2 class="sec-title">クラブ理念</h2>
-      <p class="sec-lead">ピッチの上でも外でも、BOSCO NEXTが大切にしている3つの約束です。</p>
+    <div class="sec-head values-head reveal">
+      <div>
+        <span class="kicker">Our Values</span>
+        <h2 class="sec-title">クラブ理念</h2>
+        <p class="sec-lead">ピッチの上でも外でも、BOSCO NEXTが大切にしている3つの約束です。</p>
+      </div>
+      <!-- チーム名の頭文字と理念が一致するときだけ、下のスクリプトが表示します -->
+      <div class="bosco-key" id="boscoKey" style="display:none">
+        <div class="bosco-mark" id="boscoMark" role="img" aria-label="BOSCO"></div>
+        <p class="bosco-note" id="boscoNote"></p>
+      </div>
     </div>
     <div class="values-grid" id="valuesList"></div>
   </div>
@@ -219,6 +226,7 @@ const PAGE = {
     "勝利を目指して本気で闘う一方で、安心して挑戦できるチームであることを大切にしています。「どんな壁も乗り越えられる」——その言葉を合言葉に、ピッチの上でも外でも、仲間と支え合いながら前へ進んでいます。"
   ],
   /* クラブ理念（編集画面の「トップの文章」→ クラブ理念 で編集できます） */
+  philosophyNote: "Boldly・Supportive・Considerate の頭をつなぐと、BOSCO になります。",
   philosophy: [
     { ic:"🔥", en:"Boldly",      ja:"果敢に挑戦する", body:"自分の意見を伝え、新しいことに挑戦し続ける環境をつくります。" },
     { ic:"🤝", en:"Supportive",  ja:"互いに支え合う", body:"チームの運営や活動に主体的に協力し、一体となって取り組みます。" },
@@ -259,25 +267,69 @@ function renderHome(h){
   var recruit = (h.recruit && h.recruit.length) ? h.recruit : PAGE.recruit;
   $("recruitBody").innerHTML = recruit.map(function(p){return '<p>'+esc(p)+'</p>';}).join("");
   $("taisenBody").textContent = h.taisen || PAGE.taisen;
-  renderValues((h.philosophy && h.philosophy.length) ? h.philosophy : PAGE.philosophy);
+  renderValues((h.philosophy && h.philosophy.length) ? h.philosophy : PAGE.philosophy,
+               (h.philosophyNote != null && h.philosophyNote !== "") ? h.philosophyNote : PAGE.philosophyNote);
   observeReveals();  /* あとから作ったカードもスクロールで出るようにする */
 }
 
+/* 「BOSCO」を、理念の英語の頭から順に、余さず切り分けられるか探す。
+   Boldly / Supportive / Considerate なら Bo + S + Co = BOSCO に分かれます。
+   長いほうから試すので、B より Bo が優先されます。
+   分けられないときは null を返し、ワードマークは表示しません。 */
+function splitBosco(words, word){
+  function walk(wi, pos){
+    if(wi === words.length) return (pos === word.length) ? [] : null;
+    var w = words[wi], max = Math.min(w.length, word.length - pos);
+    for(var len = max; len >= 1; len--){
+      var seg = word.substr(pos, len);
+      if(w.substr(0, len).toUpperCase() !== seg) continue;
+      var tail = walk(wi + 1, pos + len);
+      if(tail) return [seg].concat(tail);
+    }
+    return null;
+  }
+  return walk(0, 0);
+}
+
 /* クラブ理念のカードを作る */
-function renderValues(list){
+function renderValues(list, note){
   list = list || [];
   var sec = document.getElementById("values");
   if(!list.length){ if(sec) sec.style.display = "none"; return; }
   if(sec) sec.style.display = "";
+
+  var words = list.map(function(v){ return String(v && v.en || ""); });
+  var hasAll = words.every(function(w){ return w; });
+  var parts = hasAll ? splitBosco(words, "BOSCO") : null;
+
   $("valuesList").innerHTML = list.map(function(v, i){
+    /* バッジは BOSCO の担当ぶん（Bo / S / Co）。分けられないときは頭文字1字 */
+    var mark = parts ? words[i].substr(0, parts[i].length) : words[i].charAt(0);
     return '<article class="value-card reveal">'+
-      '<span class="v-no" aria-hidden="true">'+("0"+(i+1)).slice(-2)+'</span>'+
-      (v.ic ? '<span class="v-ic" aria-hidden="true">'+esc(v.ic)+'</span>' : '')+
+      '<div class="v-top">'+
+        (v.ic ? '<span class="v-ic" aria-hidden="true">'+esc(v.ic)+'</span>' : '')+
+        (mark ? '<span class="v-letter" aria-hidden="true">'+esc(mark)+'</span>' : '')+
+      '</div>'+
       '<span class="v-en">'+esc(v.en||"")+'</span>'+
       '<h3 class="v-ja">'+esc(v.ja||"")+'</h3>'+
       '<p>'+esc(v.body||"").replace(/\n/g,"<br>")+'</p>'+
     '</article>';
   }).join("");
+
+  renderBoscoKey(parts, note);
+}
+
+/* チーム名「BOSCO」を、理念3つの担当ぶんに区切って見せる。
+   区切りはゴールドの下線で示します（BO / S / CO）。 */
+function renderBoscoKey(parts, note){
+  var key = document.getElementById("boscoKey");
+  if(!key) return;
+  if(!parts){ key.style.display = "none"; return; }
+  document.getElementById("boscoMark").innerHTML = parts.map(function(seg){
+    return '<span class="seg">'+esc(seg)+'</span>';
+  }).join("");
+  document.getElementById("boscoNote").textContent = note || "";
+  key.style.display = "";
 }
 loadJSON("home.json", function(d){ renderHome(d || {}); });
 

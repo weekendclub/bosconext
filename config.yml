@@ -92,6 +92,7 @@ collections:
           - { label: 成績バッジ, name: heroBadges, widget: list, required: false, hint: '1行ずつ追加できます' }
           - { label: 流れるテロップ, name: ticker, widget: list, required: false }
           - { label: 'BOSCO NEXTとは（段落ごとに追加）', name: about, widget: list }
+          - { label: 'クラブ理念の一言（BOSCOの文字の説明・空でもOK）', name: philosophyNote, widget: string, required: false, hint: '例：Boldly・Supportive・Considerate の頭をつなぐと、BOSCO になります。' }
           - label: クラブ理念
             name: philosophy
             label_singular: 理念
