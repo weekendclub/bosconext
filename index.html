@@ -93,6 +93,18 @@
   </div>
 </section>
 
+<!-- ========== クラブ理念 ========== -->
+<section class="block" id="values">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="kicker">Our Values</span>
+      <h2 class="sec-title">クラブ理念</h2>
+      <p class="sec-lead">ピッチの上でも外でも、BOSCO NEXTが大切にしている3つの約束です。</p>
+    </div>
+    <div class="values-grid" id="valuesList"></div>
+  </div>
+</section>
+
 <!-- ========== 仲間募集 ========== -->
 <section class="block" id="join">
   <div class="wrap">
@@ -206,6 +218,13 @@ const PAGE = {
     "ソーシャルフットボールは、精神障がいのある方を中心に、誰もがフットサルを楽しみ、仲間とともに成長していくスポーツ。年齢や経験を問わず、一人ひとりが自分らしくプレーできる場所です。",
     "勝利を目指して本気で闘う一方で、安心して挑戦できるチームであることを大切にしています。「どんな壁も乗り越えられる」——その言葉を合言葉に、ピッチの上でも外でも、仲間と支え合いながら前へ進んでいます。"
   ],
+  /* クラブ理念（編集画面の「トップの文章」→ クラブ理念 で編集できます） */
+  philosophy: [
+    { ic:"🔥", en:"Boldly",      ja:"果敢に挑戦する", body:"自分の意見を伝え、新しいことに挑戦し続ける環境をつくります。" },
+    { ic:"🤝", en:"Supportive",  ja:"互いに支え合う", body:"チームの運営や活動に主体的に協力し、一体となって取り組みます。" },
+    { ic:"💛", en:"Considerate", ja:"相手を思いやる", body:"お互いの考えや気持ちを汲み取り、尊重し合います。" }
+  ],
+
   recruit: [
     "プレイヤーはもちろん、マネージャーや支えてくださる方も大歓迎です。一緒にチームを盛り上げ、闘ってくれる仲間を募集しています。",
     "体験・練習参加をご希望の方は、お問い合わせからお気軽にご連絡ください。見学だけでも大丈夫です。"
@@ -240,6 +259,25 @@ function renderHome(h){
   var recruit = (h.recruit && h.recruit.length) ? h.recruit : PAGE.recruit;
   $("recruitBody").innerHTML = recruit.map(function(p){return '<p>'+esc(p)+'</p>';}).join("");
   $("taisenBody").textContent = h.taisen || PAGE.taisen;
+  renderValues((h.philosophy && h.philosophy.length) ? h.philosophy : PAGE.philosophy);
+  observeReveals();  /* あとから作ったカードもスクロールで出るようにする */
+}
+
+/* クラブ理念のカードを作る */
+function renderValues(list){
+  list = list || [];
+  var sec = document.getElementById("values");
+  if(!list.length){ if(sec) sec.style.display = "none"; return; }
+  if(sec) sec.style.display = "";
+  $("valuesList").innerHTML = list.map(function(v, i){
+    return '<article class="value-card reveal">'+
+      '<span class="v-no" aria-hidden="true">'+("0"+(i+1)).slice(-2)+'</span>'+
+      (v.ic ? '<span class="v-ic" aria-hidden="true">'+esc(v.ic)+'</span>' : '')+
+      '<span class="v-en">'+esc(v.en||"")+'</span>'+
+      '<h3 class="v-ja">'+esc(v.ja||"")+'</h3>'+
+      '<p>'+esc(v.body||"").replace(/\n/g,"<br>")+'</p>'+
+    '</article>';
+  }).join("");
 }
 loadJSON("home.json", function(d){ renderHome(d || {}); });
 
