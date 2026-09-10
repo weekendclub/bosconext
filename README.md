@@ -47,6 +47,10 @@
 ├── admin/index.html      編集画面（Decap CMS）
 ├── config.yml            編集画面の設定（項目・保存先）
 │
+├── favicon.svg           タブのアイコン（ヘッダーのボールを図形にしたもの）
+├── favicon-32.png        同上・SVG が使えないブラウザ向け
+├── apple-touch-icon.png  iPhone のホーム画面に追加したときのアイコン
+│
 ├── sitemap.xml           検索エンジン向けサイトマップ
 ├── robots.txt            検索エンジン向けの案内（Netlify ドメイン用）
 └── .nojekyll             GitHub Pages の Jekyll 処理を無効にする印
@@ -74,6 +78,7 @@ python3 -m http.server 8000
 
 - `main` ブランチに push すると、**GitHub Pages**（このリポジトリ / root）と **Netlify**（`bosconext` プロジェクト）の両方に自動で反映されます。
 - 画像などのパスは**相対パス**で書いています。GitHub Pages（`/bosconext/` の下）と Netlify（ルート直下）のどちらでも同じように解決させるためです。ルートからの絶対パス（`/images/...`）は使わないでください。
+- ファビコンも各ページの `<head>` から相対パスで指定しています。指定を消すと、ブラウザは**ドメイン直下**の `/favicon.ico` を探しにいって 404 になります（GitHub Pages ではそこはこのリポジトリの管理外です）。ファイルを置くだけでは足りないので、`<link rel="icon">` は消さないでください。
 - 各ページの `canonical` は GitHub Pages 側を指しています（検索結果に出したい正規URL）。
 
 ## 履歴
