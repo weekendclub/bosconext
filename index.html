@@ -53,7 +53,7 @@
     <div class="stat"><span class="num" data-count="3"><span class="v">0</span><span class="suf">連覇</span></span><span class="lbl">東京都大会 制覇</span></div>
     <div class="stat"><span class="num" data-count="13" data-since="2013"><span class="v">0</span><span class="suf">年</span></span><span class="lbl">活動年数（2013〜）</span></div>
     <div class="stat"><span class="num" data-count="16"><span class="v">0</span><span class="suf">名</span></span><span class="lbl">チームメンバー</span></div>
-    <div class="stat"><span class="num" data-count="1"><span class="v">0</span><span class="suf">名</span></span><span class="lbl">強化指定選手 輩出</span></div>
+    <div class="stat"><span class="num" data-count="2"><span class="v">0</span><span class="suf">名</span></span><span class="lbl">強化指定選手 輩出</span></div>
   </div>
 </section>
 
@@ -65,7 +65,8 @@
       <h2 class="sec-title">お知らせ・活動報告</h2>
       <p class="sec-lead">大会結果や練習・合宿のレポートなど、最新の活動をお届けします。</p>
     </div>
-    <div class="news-grid" id="newsList"></div>
+    <div class="news-grid news-latest" id="newsList"></div>
+    <div class="reveal" style="margin-top:24px"><a class="btn btn-outline" href="news.html">これまでのお知らせを見る</a></div>
   </div>
 </section>
 
@@ -126,19 +127,17 @@
       <span class="kicker">Join Us</span>
       <h2 class="sec-title">仲間・対戦相手 募集中</h2>
     </div>
-    <div class="join-grid">
-      <div class="join-card reveal">
-        <h3>👋 メンバー募集</h3>
-        <div id="recruitBody"></div>
-        <div class="join-btns">
-          <a class="btn btn-primary" data-link="join">入部・体験のお問い合わせ</a>
-          <a class="btn btn-outline" data-link="contact">お問い合わせ</a>
-        </div>
+    <div class="join-card reveal">
+      <h3>👋 メンバー募集</h3>
+      <div id="recruitBody"></div>
+      <div class="join-btns">
+        <a class="btn btn-primary" data-link="join">入部・体験のお問い合わせ</a>
+        <a class="btn btn-outline" data-link="contact">お問い合わせ</a>
       </div>
-      <div class="taisen reveal">
+      <!-- 対戦募集は同じカードの中にまとめている（上のボタンから同じ問い合わせ先へ行けます） -->
+      <div class="taisen">
         <h4>⚔️ 対戦求む</h4>
         <p id="taisenBody"></p>
-        <a class="btn btn-outline" data-link="contact">お問い合わせへ</a>
       </div>
     </div>
   </div>
@@ -402,13 +401,17 @@ fetch('news.json')
   .then(function(r){ if(!r.ok) throw 0; return r.json(); })
   .then(function(data){
     var items = (data && data.items && data.items.length) ? data.items : PAGE.news;
-    $("newsList").innerHTML = items.map(renderNewsCard).join("");
-    observeReveals();
+    showLatestNews(items);
   })
   .catch(function(){
-    $("newsList").innerHTML = PAGE.news.map(renderNewsCard).join("");
-    observeReveals();
+    showLatestNews(PAGE.news);
   });
+
+/* トップに出すのは最新の1件だけ。残りは news.html（お知らせ一覧）で見せます */
+function showLatestNews(items){
+  $("newsList").innerHTML = (items || []).slice(0, 1).map(renderNewsCard).join("");
+  observeReveals();
+}
 
 function renderHomeSchedule(s){
   s = s || [];

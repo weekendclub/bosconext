@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>お知らせ・活動報告｜BOSCO NEXT</title>
+<meta name="description" content="BOSCO NEXT（ボスコ ネクスト）のお知らせ・大会結果・活動報告の一覧です。">
+<!-- ファビコン（タブのアイコン）。相対パスなので GitHub Pages(/bosconext/) と Netlify(/) の両方で解決します -->
+<link rel="icon" href="favicon-32.png" sizes="32x32">
+<link rel="icon" href="favicon-192.png" sizes="192x192">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Dela+Gothic+One&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="canonical" href="https://weekendclub.github.io/bosconext/news.html">
+<meta property="og:url" content="https://weekendclub.github.io/bosconext/news.html">
+</head>
+<body>
+
+<header id="site-header"></header>
+<nav class="mobile-menu" id="mobileMenu"></nav>
+
+<section class="subhero">
+  <div class="wrap subhero-inner">
+    <div class="breadcrumb"><a href="index.html">ホーム</a> ／ お知らせ・活動報告</div>
+    <span class="kicker">News</span>
+    <h1>お知らせ・活動報告</h1>
+    <p>大会結果や練習・合宿のレポートなど、これまでの活動をまとめています。</p>
+  </div>
+</section>
+
+<section class="block">
+  <div class="wrap">
+    <!-- カテゴリのしぼり込み -->
+    <div class="news-filter reveal" id="newsFilter" role="group" aria-label="カテゴリでしぼり込む"></div>
+    <div class="news-grid" id="newsList"></div>
+    <p id="newsEmpty" class="cnote" style="display:none;margin-top:20px">このカテゴリのお知らせはまだありません。</p>
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="wrap">
+    <h2>体験・入部のご相談</h2>
+    <p>見学だけでも大丈夫です。お気軽にご連絡ください。</p>
+    <div class="hero-cta">
+      <a class="btn btn-primary" data-link="join">⚽ 体験・入部のお問い合わせ</a>
+      <a class="btn btn-ghost" href="index.html">ホームへ戻る</a>
+    </div>
+  </div>
+</section>
+
+<footer id="site-footer"></footer>
+<button class="to-top" id="toTop" aria-label="上に戻る">↑</button>
+
+<script src="site.js"></script>
+<script>
+/* =====================================================================
+   お知らせ一覧
+   内容は news.json（編集画面／admin で編集）を読み込んで表示します。
+   読み込めない場合（パソコンでファイルを直接ひらいたプレビュー時など）は、
+   下の PAGE.news を表示します。
+   ===================================================================== */
+const PAGE = {
+  news: [
+    {
+      date: "2026.5.31", tag: "result",
+      title:"ソーシャルフットボール東京都大会2026 準優勝🥈",
+      body: "＠明治学院大学白金キャンパス。大会4連覇とはなりませんでしたが、最後まで全力で闘い抜きました。応援ありがとうございました！",
+      link: "", linkText: ""
+    },
+    {
+      date: "2026.4.25–26", tag: "report",
+      title:"BOSCO NEXT 長野合宿⚽",
+      body: "いいづなコネクトWEST・更埴体育館などをお借りしました。とても良い環境に感謝です。",
+      link: "", linkText: ""
+    }
+  ]
+};
+
+/* ===== 表示の仕組み（基本さわらなくてOK） ===== */
+const $ = function(id){return document.getElementById(id);};
+const tagName = {result:"大会結果", report:"活動報告", info:"お知らせ"};
+var ALL = [], filter = "";
+
+function renderNewsCard(n){
+  return '<article class="news-card reveal">'+
+    '<div class="news-top"><span class="news-date">'+esc(n.date)+'</span>'+
+    '<span class="tag '+esc(n.tag)+'">'+esc(tagName[n.tag]||n.tag)+'</span></div>'+
+    '<h3>'+esc(n.title)+'</h3>'+
+    '<p>'+esc(n.body).replace(/\n/g,"<br>")+'</p>'+
+    (n.link?'<a class="more" href="'+esc(n.link)+'" target="_blank" rel="noopener">'+esc(n.linkText||"くわしく見る")+'</a>':'')+
+    '</article>';
+}
+
+function draw(){
+  var items = filter ? ALL.filter(function(n){ return n.tag === filter; }) : ALL;
+  $("newsList").innerHTML = items.map(renderNewsCard).join("");
+  $("newsEmpty").style.display = items.length ? "none" : "";
+  [].forEach.call($("newsFilter").children, function(b){
+    var on = (b.dataset.tag || "") === filter;
+    b.classList.toggle("on", on);
+    b.setAttribute("aria-pressed", on ? "true" : "false");
+  });
+  observeReveals();
+}
+
+function buildFilter(){
+  /* 実際に使われているカテゴリだけボタンを出す */
+  var used = [];
+  ALL.forEach(function(n){ if(n.tag && used.indexOf(n.tag) < 0) used.push(n.tag); });
+  if(used.length < 2){ $("newsFilter").style.display = "none"; return; }
+  var btns = [{t:"", l:"すべて"}].concat(used.map(function(t){ return {t:t, l:tagName[t]||t}; }));
+  $("newsFilter").innerHTML = btns.map(function(b){
+    return '<button type="button" class="nf-btn" data-tag="'+esc(b.t)+'" aria-pressed="false">'+esc(b.l)+'</button>';
+  }).join("");
+  [].forEach.call($("newsFilter").children, function(b){
+    b.addEventListener("click", function(){ filter = b.dataset.tag || ""; draw(); });
+  });
+}
+
+loadJSON("news.json", function(d){
+  ALL = (d && d.items && d.items.length) ? d.items : PAGE.news;
+  buildFilter();
+  draw();
+});
+</script>
+</body>
+</html>

@@ -27,6 +27,7 @@
 ```
 /
 ├── index.html            トップページ
+├── news.html             お知らせ・活動報告（一覧）
 ├── team.html             チーム＆選手
 ├── tournaments.html      大会出場概要
 ├── schedule.html         スケジュール

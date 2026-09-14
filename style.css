@@ -217,6 +217,11 @@ section.block{padding:clamp(56px,8vw,96px) 0}
 /* ---------- お知らせ ---------- */
 #news{background:var(--paper)}
 .news-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:22px}
+/* トップページの「最新の1件」は横いっぱいで見せる */
+.news-latest{grid-template-columns:1fr}
+.news-latest .news-card{padding:clamp(26px,3.4vw,34px)}
+.news-latest .news-card h3{font-size:clamp(1.18rem,3vw,1.5rem)}
+.news-latest .news-card p{max-width:72ch}
 .news-card{background:var(--paper-2);border:1px solid var(--line);border-radius:var(--radius);padding:26px;
   position:relative;overflow:hidden;transition:transform .2s ease, box-shadow .2s ease;display:flex;flex-direction:column}
 .news-card::before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px;background:var(--brand)}
@@ -334,14 +339,27 @@ section.block{padding:clamp(56px,8vw,96px) 0}
 
 /* ---------- 仲間募集 ---------- */
 #join{background:var(--paper)}
-.join-grid{display:grid;grid-template-columns:1.3fr 1fr;gap:40px;align-items:start}
 .join-card{background:var(--paper-2);border:1px solid var(--line);border-radius:var(--radius);padding:clamp(28px,4vw,40px);box-shadow:var(--shadow-sm)}
 .join-card h3{font-size:1.4rem;font-weight:900;margin-bottom:14px;display:flex;align-items:center;gap:.4em}
-.join-card p{color:var(--ink-soft);margin-bottom:1em}
+.join-card p{color:var(--ink-soft);margin-bottom:1em;max-width:74ch}
 .join-btns{display:flex;flex-wrap:wrap;gap:14px;margin-top:20px}
-.taisen{margin-top:0;border-left:5px solid var(--gold);background:rgba(244,192,30,.08);border-radius:14px;padding:24px 26px}
-.taisen h4{font-weight:900;font-size:1.1rem;margin-bottom:8px;display:flex;align-items:center;gap:.4em}
-.taisen p{color:var(--ink-soft);font-size:.95rem;margin-bottom:16px}
+/* 対戦募集は同じカードの中の小ブロック */
+.taisen{margin-top:26px;border-left:5px solid var(--gold);background:rgba(244,192,30,.08);border-radius:14px;padding:20px 24px}
+.taisen h4{font-weight:900;font-size:1.1rem;margin-bottom:6px;display:flex;align-items:center;gap:.4em}
+.taisen p{color:var(--ink-soft);font-size:.95rem;margin-bottom:0}
+
+/* ---------- お知らせ一覧ページのしぼり込み ---------- */
+.news-filter{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:24px}
+.nf-btn{
+  font:inherit;font-weight:700;font-size:.88rem;cursor:pointer;
+  padding:.5em 1.1em;border-radius:999px;border:1px solid var(--line);
+  background:var(--paper-2);color:var(--ink-soft);
+  transition:background .2s ease,color .2s ease,border-color .2s ease,transform .2s ease;
+}
+.nf-btn:hover{transform:translateY(-2px);border-color:rgba(212,32,42,.3)}
+.nf-btn.on{background:var(--grad-red);border-color:transparent;color:#fff}
+.nf-btn.on:hover{transform:none}
+.nf-btn:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
 
 /* ---------- SNS・リンク ---------- */
 #links{background:linear-gradient(180deg,#efe9db,var(--paper))}
@@ -394,7 +412,6 @@ footer{background:var(--dark-900);color:rgba(255,255,255,.8);padding:54px 0 30px
   .about-grid{grid-template-columns:1fr;gap:34px}
   .about-photo{order:-1}
   .about-photo img{height:300px}
-  .join-grid{grid-template-columns:1fr}
   .values-head{grid-template-columns:1fr;gap:18px}
   .bosco-key{text-align:left;justify-self:start;max-width:100%}
   .bosco-mark{margin-right:0}
@@ -413,6 +430,15 @@ footer{background:var(--dark-900);color:rgba(255,255,255,.8);padding:54px 0 30px
   /* 絵文字は横並びのまま（縦積みにすると1行ぶん高くなるため） */
   .value-card{gap:13px}
   .value-card .v-ic{font-size:1.8rem}
+  /* SNSは1枚ずつ縦に積むと長くなるので、1行1枚の横並びにする。
+     幅が足りないので説明文は省き、名前とアカウント名だけ残す */
+  .sns-grid{grid-template-columns:1fr;gap:10px;margin-bottom:26px}
+  .sns-card{flex-direction:row;align-items:center;gap:12px;padding:13px 16px}
+  .sns-card .ic{flex:none;font-size:1.4rem}
+  .sns-card .nm{flex:1;min-width:0;font-size:.95rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .sns-card .ds{display:none}
+  .sns-card .go{flex:none;margin-top:0;font-size:.8rem;white-space:nowrap}
+  .sns-card:hover{transform:none}
 }
 @media(prefers-reduced-motion:reduce){
   *{animation:none!important;scroll-behavior:auto!important;transition:none!important}

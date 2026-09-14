@@ -34,6 +34,7 @@ var SITE_INFO = {
   ],
   /* 補助的なページ（スマホメニューとフッターに表示） */
   morePages: [
+    {label:"お知らせ",           url:"news.html"},
     {label:"リーグ",             url:"league.html"},
     {label:"新聞・雑誌切り抜き", url:"press.html"},
     {label:"会員専用ページ",     url:"members.html"}
