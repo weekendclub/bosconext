@@ -44,7 +44,8 @@
 │                         news / home / team / schedule / tournaments / gallery / links
 ├── images/
 │   ├── emblem.png        クラブエンブレム（いただいた元データ・赤背景）
-│   ├── emblem-trimmed.png  同上の背景を抜いたもの（アイコンの元／使い回し用）
+│   ├── emblem-trimmed.png  同上の背景を抜いたもの（各アイコンの元データ）
+│   ├── emblem-mark.png   ヘッダー・フッターのマーク用に小さくしたもの
 │   └── uploads/          編集画面からアップロードした画像の保存先
 │
 ├── admin/index.html      編集画面（Decap CMS）
