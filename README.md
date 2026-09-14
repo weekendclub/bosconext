@@ -42,14 +42,17 @@
 │
 ├── *.json                編集画面で保存されるデータ
 │                         news / home / team / schedule / tournaments / gallery / links
-├── images/uploads/       編集画面からアップロードした画像の保存先
+├── images/
+│   ├── emblem.png        クラブエンブレム（いただいた元データ・赤背景）
+│   ├── emblem-trimmed.png  同上の背景を抜いたもの（アイコンの元／使い回し用）
+│   └── uploads/          編集画面からアップロードした画像の保存先
 │
 ├── admin/index.html      編集画面（Decap CMS）
 ├── config.yml            編集画面の設定（項目・保存先）
 │
-├── favicon.svg           タブのアイコン（ヘッダーのボールを図形にしたもの）
-├── favicon-32.png        同上・SVG が使えないブラウザ向け
-├── apple-touch-icon.png  iPhone のホーム画面に追加したときのアイコン
+├── favicon-32.png        タブのアイコン（クラブエンブレム・背景透過）
+├── favicon-192.png       同上・高解像度の画面向け
+├── apple-touch-icon.png  iPhone のホーム画面に追加したときのアイコン（赤地）
 │
 ├── sitemap.xml           検索エンジン向けサイトマップ
 ├── robots.txt            検索エンジン向けの案内（Netlify ドメイン用）
