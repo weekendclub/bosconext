@@ -132,10 +132,21 @@ collections:
             widget: list
             summary: 'No.{{fields.no}} {{fields.name}}'
             fields:
-              - { label: 背番号, name: no, widget: string, required: false, hint: '無ければ空でOK' }
+              - { label: 背番号, name: 'no', widget: string, required: false, hint: '無ければ空でOK' }
               - { label: 名前・ニックネーム, name: name, widget: string }
               - { label: 'ポジション（任意）', name: pos, widget: string, required: false, default: '' }
               - { label: '写真（任意）', name: photo, widget: image, required: false }
+              - { label: '誕生日・血液型など（任意）', name: meta, widget: string, required: false, default: '', hint: '例：12月20日 ・ O型' }
+              - label: 'プロフィール（任意）'
+                name: info
+                label_singular: 項目
+                widget: list
+                required: false
+                summary: '{{fields.k}}：{{fields.v}}'
+                hint: 'カードを開いたときに出る内容です。「項目名」と「内容」をセットで追加します'
+                fields:
+                  - { label: 項目名, name: k, widget: string, hint: '例：趣味' }
+                  - { label: 内容, name: v, widget: text }
           - label: スタッフ
             name: staff
             label_singular: スタッフ
@@ -145,6 +156,17 @@ collections:
               - { label: 役割, name: role, widget: string, hint: '例：監督' }
               - { label: お名前, name: name, widget: string }
               - { label: '写真（任意）', name: photo, widget: image, required: false }
+              - { label: '誕生日・血液型など（任意）', name: meta, widget: string, required: false, default: '', hint: '例：12月20日 ・ O型' }
+              - label: 'プロフィール（任意）'
+                name: info
+                label_singular: 項目
+                widget: list
+                required: false
+                summary: '{{fields.k}}：{{fields.v}}'
+                hint: 'カードを開いたときに出る内容です。「項目名」と「内容」をセットで追加します'
+                fields:
+                  - { label: 項目名, name: k, widget: string, hint: '例：趣味' }
+                  - { label: 内容, name: v, widget: text }
 
   # ===== スケジュール =====
   - name: schedule

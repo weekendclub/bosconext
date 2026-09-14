@@ -265,8 +265,9 @@ section.block{padding:clamp(56px,8vw,96px) 0}
 .about-photo .frame{border-radius:22px;overflow:hidden;border:5px solid rgba(255,255,255,.12);box-shadow:0 40px 70px -30px rgba(0,0,0,.7)}
 .about-photo img{width:100%;height:440px;object-fit:cover}
 
-/* ---------- クラブ理念 ---------- */
+/* ---------- クラブ理念（タブで切り替え） ---------- */
 #values{background:linear-gradient(180deg,var(--paper),#efe9db)}
+
 /* 見出しの右に「BOSCO」のワードマークを置く */
 .values-head{display:grid;grid-template-columns:1fr auto;gap:24px 46px;align-items:end}
 .bosco-key{text-align:right;max-width:min(34em,46vw);justify-self:end}
@@ -282,44 +283,54 @@ section.block{padding:clamp(56px,8vw,96px) 0}
   height:3px;border-radius:2px;background:var(--grad-gold)}
 .bosco-note{margin-top:14px;font-size:.85rem;line-height:1.75;color:var(--ink-soft)}
 
-.values-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
-.value-card{
-  position:relative;overflow:hidden;
-  background:var(--paper-2);border:1px solid var(--line);border-radius:var(--radius);
-  padding:clamp(26px,3.4vw,34px);box-shadow:var(--shadow-sm);
-  transition:transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+/* ---- タブ ---- */
+.values-tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:16px}
+.v-tab{
+  display:flex;align-items:center;justify-content:center;gap:10px;min-width:0;
+  padding:11px 14px;border:1px solid var(--line);border-radius:14px;
+  background:var(--paper-2);font:inherit;cursor:pointer;
+  transition:background .22s ease,border-color .22s ease,transform .22s ease,box-shadow .22s ease;
 }
-/* 左の赤いアクセント（お知らせカードと同じ考え方） */
-.value-card::before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px;
-  background:var(--grad-red);transition:width .25s ease}
-.value-card:hover{transform:translateY(-6px);box-shadow:var(--shadow);border-color:rgba(212,32,42,.3)}
-.value-card:hover::before{width:8px}
-/* 絵文字（左）と、BOSCOの頭文字バッジ（右）を1行に */
-.value-card .v-top{display:flex;align-items:center;gap:12px;margin-bottom:14px;min-height:44px}
-.value-card .v-ic{font-size:1.9rem;line-height:1}
-.value-card .v-letter{
-  margin-left:auto;flex:none;
-  min-width:48px;height:40px;padding:.08em 14px 0;border-radius:999px;
+.v-tab:hover{transform:translateY(-2px);border-color:rgba(212,32,42,.32)}
+.v-tab:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.v-tab .v-en{
+  font-family:"Anton",sans-serif;text-transform:uppercase;letter-spacing:.05em;
+  font-size:clamp(.8rem,2.1vw,1.05rem);color:var(--brand);
+  min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+  transition:color .22s ease;
+}
+/* 選択中のタブ（戦績バンドと同じ、黒地にゴールド） */
+.v-tab.on{background:var(--grad-dark);border-color:transparent;box-shadow:var(--shadow-sm)}
+.v-tab.on:hover{transform:none}
+.v-tab.on .v-en{color:var(--gold)}
+/* BOSCOの担当ぶんを示すバッジ（Bo / S / Co） */
+.v-tab .v-letter{
+  flex:none;min-width:44px;height:36px;padding:.08em 12px 0;border-radius:999px;
   display:inline-flex;align-items:center;justify-content:center;
-  font-family:"Anton",sans-serif;font-size:1.3rem;line-height:1;letter-spacing:.04em;
-  background:var(--grad-gold);color:var(--dark-900);box-shadow:var(--shadow-sm);
-  transition:transform .25s ease, box-shadow .25s ease;
+  font-family:"Anton",sans-serif;font-size:1.2rem;line-height:1;letter-spacing:.04em;
+  background:var(--grad-gold);color:var(--dark-900);
 }
-.value-card:hover .v-letter{transform:scale(1.08) rotate(-5deg);box-shadow:var(--glow-gold)}
-.value-card .v-en{
-  display:block;font-family:"Anton",sans-serif;color:var(--brand);
-  font-size:clamp(1.2rem,3.2vw,1.45rem);letter-spacing:.07em;text-transform:uppercase;
+
+/* ---- 中身のパネル ---- */
+.value-card{
+  position:relative;overflow:hidden;display:flex;gap:18px;align-items:flex-start;
+  background:var(--paper-2);border:1px solid var(--line);border-radius:var(--radius);
+  padding:clamp(24px,3.2vw,32px) clamp(24px,3.2vw,34px);box-shadow:var(--shadow-sm);
 }
+.value-card[hidden]{display:none}
+.value-card::before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px;background:var(--grad-red)}
+/* タブを切り替えたときにふわっと出す */
+.value-card.in{animation:valueIn .4s cubic-bezier(.2,.7,.2,1)}
+@keyframes valueIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.value-card .v-ic{flex:none;font-size:2.1rem;line-height:1.2}
+.value-card .v-text{min-width:0}
 .value-card .v-ja{
-  position:relative;font-size:clamp(1.05rem,3vw,1.25rem);font-weight:900;line-height:1.5;
-  margin:.15em 0 .8em;padding-bottom:.8em;
+  position:relative;font-size:clamp(1.05rem,3vw,1.3rem);font-weight:900;line-height:1.5;
+  margin:0 0 .8em;padding-bottom:.7em;
 }
 .value-card .v-ja::after{content:"";position:absolute;left:0;bottom:0;width:34px;height:3px;
   background:var(--grad-gold);border-radius:2px}
-.value-card p{color:var(--ink-soft);font-size:.95rem}
-/* カードを少しずつ遅らせて出す */
-.values-grid .reveal:nth-child(2){transition-delay:.09s}
-.values-grid .reveal:nth-child(3){transition-delay:.18s}
+.value-card p{color:var(--ink-soft);font-size:.95rem;margin:0}
 
 /* ---------- 仲間募集 ---------- */
 #join{background:var(--paper)}
@@ -384,8 +395,7 @@ footer{background:var(--dark-900);color:rgba(255,255,255,.8);padding:54px 0 30px
   .about-photo{order:-1}
   .about-photo img{height:300px}
   .join-grid{grid-template-columns:1fr}
-  .values-grid{grid-template-columns:1fr 1fr}
-  .values-head{grid-template-columns:1fr;gap:22px}
+  .values-head{grid-template-columns:1fr;gap:18px}
   .bosco-key{text-align:left;justify-self:start;max-width:100%}
   .bosco-mark{margin-right:0}
 }
@@ -395,7 +405,14 @@ footer{background:var(--dark-900);color:rgba(255,255,255,.8);padding:54px 0 30px
   .nm-grid{grid-template-columns:1fr}
   .nm-date{border-right:0;border-bottom:1px solid rgba(255,255,255,.2);padding-right:0;padding-bottom:18px;display:flex;align-items:baseline;gap:14px;justify-content:center}
   .sched-row{grid-template-columns:1fr;gap:6px}
-  .values-grid{grid-template-columns:1fr}
+  /* 狭い画面ではタブを縦積み（バッジの下に英語）にして、文字が切れないようにする */
+  .values-tabs{gap:8px}
+  .v-tab{flex-direction:column;gap:7px;padding:12px 8px}
+  .v-tab .v-letter{min-width:40px;height:32px;font-size:1.05rem;padding:.08em 10px 0}
+  .v-tab .v-en{font-size:.72rem;letter-spacing:.03em}
+  /* 絵文字は横並びのまま（縦積みにすると1行ぶん高くなるため） */
+  .value-card{gap:13px}
+  .value-card .v-ic{font-size:1.8rem}
 }
 @media(prefers-reduced-motion:reduce){
   *{animation:none!important;scroll-behavior:auto!important;transition:none!important}
