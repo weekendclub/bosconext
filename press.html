@@ -34,7 +34,6 @@
   <div class="wrap">
     <div class="lead-block reveal" id="lead"></div>
     <div class="cliplist reveal" id="clips" style="margin-top:24px"></div>
-    <p class="cnote reveal" style="margin-top:20px">※ 下の一覧はサンプルです。掲載日・媒体名・見出し・リンクを clips に追記してください。</p>
   </div>
 </section>
 
@@ -61,8 +60,9 @@
    ===================================================================== */
 const PAGE = {
   clips: [
-    {date:"20XX.XX", outlet:"媒体名", title:"見出し・タイトルをここに（サンプル）", url:""},
-    {date:"20XX.XX", outlet:"媒体名", title:"見出し・タイトルをここに（サンプル）", url:""}
+    {date:"2022.3", outlet:"メルディア広報誌『MELDIA』vol.47", title:"フットサルチーム探訪 BOSCO NEXT ― 仲間とチームワークを大切に、東京から全国へ", url:"https://image.jimcdn.com/app/cms/image/transf/none/path/sa4c70deaa5976d3d/image/i838ec9f6ae3476a6/version/1651233133/image.jpg"},
+    {date:"2015.2.19", outlet:"愛媛新聞", title:"17年全国障害者スポーツ大会 オープン3競技内定（精神障害者フットサルなど）", url:"https://image.jimcdn.com/app/cms/image/transf/dimension=origxorig:format=png/path/sa4c70deaa5976d3d/image/iecd918b0b6c2752c/version/1455455454/image.png"},
+    {date:"2014.12.2", outlet:"朝日新聞 朝刊「ひと」", title:"精神障害者のフットサルチームを率いる", url:"https://image.jimcdn.com/app/cms/image/transf/dimension=origxorig:format=png/path/sa4c70deaa5976d3d/image/i02f199390328d956/version/1455455523/image.png"}
   ]
 };
 
@@ -76,7 +76,7 @@ document.getElementById("clips").innerHTML = clips.length
       return '<div class="clip"><span class="cd">'+esc(c.date)+'</span>'+
         '<span class="outlet">'+esc(c.outlet)+'</span>'+
         '<span class="ct">'+esc(c.title)+'</span>'+
-        (c.url?'<a class="cmore" href="'+esc(c.url)+'" target="_blank" rel="noopener">リンクへ →</a>':'<span></span>')+
+        (c.url?'<a class="cmore" href="'+esc(c.url)+'" target="_blank" rel="noopener">紙面を見る →</a>':'<span></span>')+
         '</div>';
     }).join("")
   : '<p style="color:var(--ink-soft)">現在、掲載情報はありません。</p>';

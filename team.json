@@ -34,7 +34,11 @@
       "meta": "1月2日 ・ 山羊座♑ O型",
       "info": [
         {"k": "ポジション", "v": "FW/MF（全力プレー）"},
-        {"k": "目標・今後", "v": "ご飯（飲み会）出席率向上（いつもすみません）"}
+        {"k": "目標・今後", "v": "ご飯（飲み会）出席率向上（いつもすみません）"},
+        {"k": "趣味", "v": "フットサル、フィットネス、読書、音楽鑑賞"},
+        {"k": "入ったきっかけ", "v": "元々サッカーをやっていて、病気で一度離れた。もう一度やりたいと思っていてこちらを見つけ、チームの雰囲気と居心地がとてもよかったので"},
+        {"k": "マネージャーより", "v": "3つの漢字＝麗・動・謙／動物＝カンガルー（フットワークの軽さ）／歴史上の人物＝松（影の功労者）"},
+        {"k": "メンバーからの一言", "v": "”彩色謙美”で元気な姉御肌♪"}
       ]
     },
     {
@@ -47,21 +51,28 @@
         {"k": "入ったきっかけ", "v": "通っていたデイケアにフットサル部があり、行ってみたら、めちゃくちゃ楽しかった"},
         {"k": "目標・今後", "v": "みんなで喜びの涙を流したい。イニエスタになりたい。"},
         {"k": "ひとこと", "v": "細かすぎて伝わらない！！！"},
-        {"k": "マネージャーより", "v": "3つの漢字＝努・練・球／動物＝イヌ（人懐っこくて足が速い）／歴史上の人物＝伊達政宗（若さと存在感）"}
+        {"k": "マネージャーより", "v": "3つの漢字＝努・練・球／動物＝イヌ（人懐っこくて足が速い）／歴史上の人物＝伊達政宗（若さと存在感）"},
+        {"k": "マネージャーからの一言", "v": "いかなる時も全力で走り続けて、時間があればフットサルボールと戯れる、真の自主レンジャー♪"}
       ]
     },
     {
-      "no": "9", "name": "ゆうま", "pos": "",
-      "photo": "",
-      "meta": "",
-      "info": []
+      "no": "9", "name": "ゆうま", "pos": "FP",
+      "photo": "https://image.jimcdn.com/app/cms/image/transf/dimension=400x400:mode=crop:format=jpg/path/sa4c70deaa5976d3d/image/i307a9a0d6d51cbd1/version/1759531432/image.jpg",
+      "meta": "", "info": [
+        {"k": "ポジション", "v": "フィールドプレーヤー"}
+      ]
     },
     {
       "no": "10", "name": "ヒットミー", "pos": "FP",
       "photo": "https://image.jimcdn.com/app/cms/image/transf/dimension=400x400:mode=crop:format=jpg/path/sa4c70deaa5976d3d/image/i6f2aec36d78d5d57/version/1418135442/image.jpg",
       "meta": "5月15日 ・ 牡牛座♉ O型",
       "info": [
-        {"k": "ポジション", "v": "フィールドプレーヤー、代表補佐"}
+        {"k": "ポジション", "v": "フィールドプレーヤー、代表補佐"},
+        {"k": "趣味", "v": "スポーツ観戦"},
+        {"k": "入ったきっかけ", "v": "デイケアでフットサルにはまり、デイケアを卒業してもフットサルができる場所を作ろうと言って作った、今は少なくなった創設メンバー"},
+        {"k": "ひとこと", "v": "1年でも1秒でも長くコートに立っていたい！！"},
+        {"k": "マネージャーより", "v": "3つの漢字＝芯・勝・萌／動物＝ラッコ／歴史上の人物＝石田三成"},
+        {"k": "メンバーからの一言", "v": "萌え萌えビームのヒットミースマイルにみんなはいつも和んでいます♪"}
       ]
     },
     {
@@ -69,7 +80,11 @@
       "photo": "https://image.jimcdn.com/app/cms/image/transf/dimension=400x400:mode=crop:format=jpg/path/sa4c70deaa5976d3d/image/i42bb6f476c698401/version/1759530459/image.jpg",
       "meta": "12月21日 ・ 射手座♐ A型",
       "info": [
-        {"k": "ポジション", "v": "アラ、フィクソ"}
+        {"k": "ポジション", "v": "アラ、フィクソ"},
+        {"k": "趣味", "v": "深夜ラジオ、動画鑑賞（スポーツ、バラエティ、海外のニュース…etc）、読書"},
+        {"k": "入ったきっかけ", "v": "No.26（とま）の勧誘"},
+        {"k": "目標・今後", "v": "関東大会の出場権の獲得、関東大会GL突破"},
+        {"k": "ひとこと", "v": "1回1回の練習や活動に感謝しつつ、大会や試合に向けて良い準備をチームでしていきたい！チーム一丸で盛り上げていこう〜"}
       ]
     },
     {
@@ -77,7 +92,13 @@
       "photo": "https://image.jimcdn.com/app/cms/image/transf/dimension=400x400:mode=crop:format=jpg/path/sa4c70deaa5976d3d/image/ie07438dc7e43695f/version/1759530728/image.jpg",
       "meta": "8月22日 ・ 長野県出身 ・ 獅子座♌ B型",
       "info": [
-        {"k": "ポジション", "v": "フィールドプレーヤー"}
+        {"k": "ポジション", "v": "フィールドプレーヤー"},
+        {"k": "趣味", "v": "フットサル"},
+        {"k": "入ったきっかけ", "v": "かんちゃんの新聞記事を見て"},
+        {"k": "目標・今後", "v": "大会優勝"},
+        {"k": "ひとこと", "v": "遅れてきたオールドルーキーです。よろしく。"},
+        {"k": "マネージャーより", "v": "3つの漢字＝王・若・爽／動物＝フクロウ／歴史上の人物＝本多忠勝"},
+        {"k": "メンバーからの一言", "v": "コートに立つとゴールを量産する、ヤンチャな二人のお子様とチームのヒーロー♪"}
       ]
     },
     {
@@ -100,8 +121,17 @@
       ]
     },
     {
+      "no": "20", "name": "くま", "pos": "ゴレイロ",
+      "photo": "https://image.jimcdn.com/app/cms/image/transf/dimension=400x400:mode=crop:format=jpg/path/sa4c70deaa5976d3d/image/i8c3ffdaddbe11666/version/1759463407/image.jpg",
+      "meta": "7月18日 ・ かに座♋",
+      "info": [
+        {"k": "ポジション", "v": "ゴレイロ"},
+        {"k": "武器", "v": "セービング、コーチング"}
+      ]
+    },
+    {
       "no": "23", "name": "すがちゃん", "pos": "FP",
-      "photo": "https://image.jimcdn.com/app/cms/image/transf/dimension=400x400:mode=crop:format=jpg/path/sa4c70deaa5976d3d/image/i307a9a0d6d51cbd1/version/1759531432/image.jpg",
+      "photo": "https://image.jimcdn.com/app/cms/image/transf/dimension=400x400:mode=crop:format=jpg/path/sa4c70deaa5976d3d/image/i12b53a8cdabce1a7/version/1784519222/image.jpg",
       "meta": "9月21日 ・ 乙女座♍",
       "info": [
         {"k": "ポジション", "v": "フィールドプレーヤー"}
@@ -109,7 +139,7 @@
     },
     {
       "no": "25", "name": "マッキー", "pos": "ゴレイロ/ピヴォ",
-      "photo": "https://image.jimcdn.com/app/cms/image/transf/dimension=400x400:mode=crop:format=jpg/path/sa4c70deaa5976d3d/image/i8c3ffdaddbe11666/version/1759463407/image.jpg",
+      "photo": "https://image.jimcdn.com/app/cms/image/transf/dimension=400x400:mode=crop:format=jpg/path/sa4c70deaa5976d3d/image/i1090e0654ab0f239/version/1784518928/image.jpg",
       "meta": "177cm／90kg ・ 1994年2月11日 ・ みずがめ座♒ A型 ・ 神奈川県横浜市出身",
       "info": [
         {"k": "ポジション", "v": "ゴレイロ、ピヴォ"},
@@ -150,6 +180,13 @@
       ]
     },
     {
+      "no": "35", "name": "ハマさん", "pos": "ゴレイロ",
+      "photo": "https://image.jimcdn.com/app/cms/image/transf/dimension=400x400:mode=crop:format=jpg/path/sa4c70deaa5976d3d/image/i53a62a38f6e87abb/version/1780601636/image.jpg",
+      "meta": "", "info": [
+        {"k": "ポジション", "v": "ゴレイロ"}
+      ]
+    },
+    {
       "no": "39", "name": "おのっち", "pos": "FP",
       "photo": "https://image.jimcdn.com/app/cms/image/transf/dimension=400x400:mode=crop:format=jpg/path/sa4c70deaa5976d3d/image/icd1d16259258df13/version/1759463334/image.jpg",
       "meta": "170cm／70kg ・ 7月11日 ・ 蟹座♋ O型 ・ 神奈川県横浜市出身",
@@ -177,13 +214,6 @@
       ]
     },
     {
-      "no": "", "name": "ハマさん", "pos": "ゴレイロ",
-      "photo": "https://image.jimcdn.com/app/cms/image/transf/dimension=400x400:mode=crop:format=jpg/path/sa4c70deaa5976d3d/image/i53a62a38f6e87abb/version/1780601636/image.jpg",
-      "meta": "", "info": [
-        {"k": "ポジション", "v": "ゴレイロ"}
-      ]
-    },
-    {
       "no": "", "name": "うら", "pos": "FP",
       "photo": "https://image.jimcdn.com/app/cms/image/transf/dimension=400x400:mode=crop:format=jpg/path/sa4c70deaa5976d3d/image/ifd596bf928701c7a/version/1759531820/image.jpg",
       "meta": "", "info": [
@@ -194,9 +224,16 @@
   "staff": [
     {
       "role": "監督", "name": "アキさん",
-      "photo": "https://image.jimcdn.com/app/cms/image/transf/dimension=400x400:mode=crop:format=jpg/path/sa4c70deaa5976d3d/image/ieb1b69d5dabe471f/version/1759529685/image.jpg",
+      "photo": "https://image.jimcdn.com/app/cms/image/transf/dimension=400x400:mode=crop:format=jpg/path/sa4c70deaa5976d3d/image/i64ac0d3bbdf92617/version/1784518790/image.jpg",
       "meta": "", "info": [
         {"k": "役割", "v": "監督"}
+      ]
+    },
+    {
+      "role": "コーチ", "name": "せとさん",
+      "photo": "https://image.jimcdn.com/app/cms/image/transf/dimension=400x400:mode=crop:format=jpg/path/sa4c70deaa5976d3d/image/ieb1b69d5dabe471f/version/1759529685/image.jpg",
+      "meta": "", "info": [
+        {"k": "役割", "v": "コーチ"}
       ]
     }
   ]

@@ -41,7 +41,7 @@
     <div class="sec-head reveal">
       <span class="kicker">Records</span>
       <h2 class="sec-title">戦績</h2>
-      <p class="sec-lead">新しい大会を上に追記していけます。</p>
+      <p class="sec-lead">2013年からの大会の記録です。</p>
     </div>
     <div class="timeline reveal" id="timeline"></div>
   </div>
@@ -70,17 +70,23 @@
    ===================================================================== */
 const PAGE = {
   lead: [
-    "BOSCO NEXTは、ソーシャルフットボールの各大会に挑戦してきました。直近の戦績は次のとおりです。",
-    "※ 過去の大会は、下の形式にならって追記してください（古い記録ほど下に並びます）。"
+    "BOSCO NEXTは、ソーシャルフットボールの各大会に挑戦してきました。これまでの戦績を新しい順に紹介します。"
   ],
 
   history: [
     {
-      date:"2026.7.19（予定）",
+      date:"2026.10.18",
+      title:"第9回エスパルスハートフルカップ",
+      meta:"エスパルスドリームフィールド静岡フットサル",
+      result:"win",
+      note:""
+    },
+    {
+      date:"2026.7.19",
       title:"JIFF 第6回ソーシャルフットボール全国大会 予選・関東大会",
       meta:"サイデン化学アリーナさいたま",
-      result:"join",
-      note:"全国大会〈神奈川県／11月21日〉への出場をかけた予選。"
+      result:"win",
+      note:"決勝はVISTACHIOと2-2からPK戦を制して優勝。全国大会〈神奈川県／11月21日〉出場を決めました。"
     },
     {
       date:"2026.5.31",
@@ -88,13 +94,6 @@ const PAGE = {
       meta:"明治学院大学 白金キャンパス",
       result:"2nd",
       note:"4連覇を目指した大会で準優勝。最後まで全力で闘い抜きました。"
-    },
-    {
-      date:"20XX.XX",
-      title:"○○大会（サンプル）",
-      meta:"会場名",
-      result:"win",
-      note:"結果やエピソードをここに記入してください。"
     }
   ]
 };
@@ -102,6 +101,7 @@ const PAGE = {
 /* ===== 表示の仕組み（内容は tournaments.json＝CMSで編集。読めない時は上の PAGE を表示）===== */
 var badge = {win:'<span class="result-badge rb-win">優勝 🏆</span>',
              "2nd":'<span class="result-badge rb-2nd">準優勝 🥈</span>',
+             "3rd":'<span class="result-badge rb-3rd">3位 🥉</span>',
              join:'<span class="result-badge rb-join">出場</span>', "":""};
 
 function renderTournaments(d){

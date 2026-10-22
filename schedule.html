@@ -46,7 +46,7 @@
     <div class="sec-head reveal">
       <span class="kicker">Results</span>
       <h2 class="sec-title">これまでの結果</h2>
-      <p class="sec-lead">新しい結果を上に追記していけます。</p>
+      <p class="sec-lead">これまでの試合・大会の結果です。</p>
     </div>
     <div class="reveal" id="resultList"></div>
   </div>
@@ -77,11 +77,11 @@
 const PAGE = {
   upcoming: [
     {
-      date:"7.19", sub:"2026 ㈰",
-      title:"JIFF 第6回ソーシャルフットボール全国大会 予選・関東大会",
-      place:"サイデン化学アリーナさいたま（さいたま市記念総合体育館）",
-      placeLink:"http://sai-kinen-spomachi.jp/",
-      note:"全国大会〈神奈川県／11/21〉の出場をかけた予選です。応援よろしくお願いします🔥"
+      date:"11.21", sub:"2026 ㈯",
+      title:"JIFF 第6回ソーシャルフットボール全国大会",
+      place:"神奈川県",
+      placeLink:"",
+      note:"関東大会優勝で出場権を獲得！全国の頂点を目指します🔥 応援よろしくお願いします。"
     }
     /* ↓ 追加するときはこの下に貼り付け（先頭の , を忘れずに）
     ,{ date:"8.10", sub:"2026 ㈯", title:"練習試合 vs ◯◯", place:"◯◯体育館", placeLink:"", note:"" }
@@ -90,16 +90,22 @@ const PAGE = {
 
   results: [
     {
+      date:"2026.10.18",
+      title:"第9回エスパルスハートフルカップ",
+      score:"優勝 🏆", wl:"w",
+      note:"＠エスパルスドリームフィールド静岡フットサル。"
+    },
+    {
+      date:"2026.7.19",
+      title:"JIFF 第6回ソーシャルフットボール全国大会 予選・関東大会",
+      score:"優勝 🏆", wl:"w",
+      note:"＠サイデン化学アリーナさいたま。決勝はVISTACHIOと2-2からPK戦を制して優勝。"
+    },
+    {
       date:"2026.5.31",
       title:"ソーシャルフットボール東京都大会2026",
       score:"準優勝 🥈", wl:"d",
       note:"＠明治学院大学白金キャンパス。4連覇とはならずも全力で闘いました。"
-    },
-    {
-      date:"20XX.XX.XX",
-      title:"練習試合 vs ◯◯（サンプル）",
-      score:"3 - 1", wl:"w",
-      note:"スコアやひとことをここに記入してください。"
     }
   ]
 };
