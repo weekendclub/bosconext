@@ -262,6 +262,10 @@ const CONTACT = {
   var useEndpoint = !!CONTACT.endpoint;
   var loadedAt = Date.now();
   var sending = false, triedSubmit = false, lastData = null;
+  /* ページを開いてからの経過時間（ミリ秒）。端末の時計を変えても狂わない測り方を優先する */
+  function elapsed(){
+    return (window.performance && performance.now) ? Math.round(performance.now()) : Date.now() - loadedAt;
+  }
 
   /* メールや画面に出す項目名（並び順もこの順） */
   var ORDER = ["team","name","kana","gender","email","email2","disability","message"];
@@ -273,7 +277,7 @@ const CONTACT = {
 
   function ctrl(name){ return form.elements[name]; }
   function currentType(){ var r = form.querySelector('input[name="type"]:checked'); return r ? r.value : ""; }
-  function labelOf(f, type){ return (f === "name" && CONTACT.types[type].nameLabel) || LABEL[f]; }
+  function labelOf(f, type){ return (f === "name" && (CONTACT.types[type] || {}).nameLabel) || LABEL[f]; }
   function shown(f){ var c = ctrl(f); return !!c && !c.disabled; }
 
   /* ---- 入力の整え方 ---- */
@@ -362,13 +366,16 @@ const CONTACT = {
   }
 
   /* ---- 送信できなかったとき／メールアプリで送るときの案内 ---- */
-  function showManual(d, failed){
+  function showManual(d, failed, code){
     lastData = d;
+    var limit = failed && code === "limit";   /* 受け口が「本日の受付上限」と答えたとき。押し直しても送れないので、別の方法を案内する */
     byId("cfManualTitle").textContent = failed ? "送信できませんでした" : "メールアプリを開きます";
-    byId("cfManualText").textContent = failed
+    byId("cfManualText").textContent = limit
+      ? "ただいま、フォームからの受け付けを一時的に止めています。入力した内容は消えていません。お手数ですが、メールアプリまたはSNSのDMでご連絡ください。"
+      : failed
       ? "通信の状態などにより、送信できませんでした。入力した内容は消えていません。お手数ですが、もう一度お試しいただくか、メールアプリ・SNSのDMでご連絡ください。"
       : "入力した内容が入ったメールが開きますので、そのまま送信してください。メールアプリが開かない場合は、下の内容をコピーして、宛先のアドレスへメールでお送りください。";
-    byId("cfRetry").hidden = !failed;
+    byId("cfRetry").hidden = !failed || limit;
     byId("cfMailLink").textContent = failed ? "メールアプリで送る" : "メールアプリを開く";
     byId("cfMailLink").href = mailtoOf(d);
     byId("cfManualTo").textContent = addressOf(d);
@@ -391,9 +398,9 @@ const CONTACT = {
     var data = {}; Object.keys(d).forEach(function(k){ data[k] = d[k]; });
     data.cf_hp = ctrl("cf_hp").value;
     /* ページを開いて数秒以内の送信は機械とみなされるので、人の操作では起きないよう少し待つ */
-    var wait = Math.max(0, 3500 - (Date.now() - loadedAt));
+    var wait = Math.max(0, 3500 - elapsed());
     setTimeout(function(){
-      data.t = String(Date.now() - loadedAt);
+      data.t = String(elapsed());
       var abort = ("AbortController" in window) ? new AbortController() : null;
       var timer = setTimeout(function(){ if(abort) abort.abort(); }, 25000);
       fetch(CONTACT.endpoint, { method:"POST", body:new URLSearchParams(data), signal: abort ? abort.signal : undefined })
@@ -413,7 +420,7 @@ const CONTACT = {
             });
             if(first){ showAlert("入力内容をご確認ください。"); first.focus(); return; }
           }
-          showManual(d, true);
+          showManual(d, true, res && res.error);
         })
         .catch(function(){ clearTimeout(timer); setSending(false); showManual(d, true); });
     }, wait);

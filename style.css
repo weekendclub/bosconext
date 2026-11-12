@@ -216,7 +216,7 @@ section.block{padding:clamp(56px,8vw,96px) 0}
 
 /* ---------- お知らせ ---------- */
 #news{background:var(--paper)}
-.news-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:22px}
+.news-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(300px,100%),1fr));gap:22px}
 /* トップページの「最新の1件」は横いっぱいで見せる */
 .news-latest{grid-template-columns:1fr}
 .news-latest .news-card{padding:clamp(26px,3.4vw,34px)}
@@ -434,10 +434,11 @@ footer{background:var(--dark-900);color:rgba(255,255,255,.8);padding:54px 0 30px
   .value-card .v-ic{font-size:1.8rem}
   /* SNSは1枚ずつ縦に積むと長くなるので、1行1枚の横並びにする。
      幅が足りないので説明文は省き、名前とアカウント名だけ残す */
-  .sns-grid{grid-template-columns:1fr;gap:10px;margin-bottom:26px}
+  .sns-grid{grid-template-columns:minmax(0,1fr);gap:10px;margin-bottom:26px}
   .sns-card{flex-direction:row;align-items:center;gap:12px;padding:13px 16px}
   .sns-card .ic{flex:none;font-size:1.4rem}
-  .sns-card .nm{flex:1;min-width:0;font-size:.95rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  /* 長い名前（団体名など）は「…」で切らず、折り返して全部見せる */
+  .sns-card .nm{flex:1;min-width:0;font-size:.95rem;line-height:1.45;overflow-wrap:anywhere}
   .sns-card .ds{display:none}
   .sns-card .go{flex:none;margin-top:0;font-size:.8rem;white-space:nowrap}
   .sns-card:hover{transform:none}
@@ -463,7 +464,8 @@ footer{background:var(--dark-900);color:rgba(255,255,255,.8);padding:54px 0 30px
 .subhero::before{content:"";position:absolute;inset:0;opacity:.5;
   background-image:repeating-linear-gradient(115deg, rgba(255,255,255,.05) 0 2px, transparent 2px 46px);pointer-events:none}
 .subhero::after{content:"⚽";position:absolute;right:-12px;bottom:-30px;font-size:9rem;opacity:.07;pointer-events:none}
-.subhero-inner{position:relative;padding:clamp(40px,6vw,64px) 0 clamp(34px,5vw,52px)}
+/* 上下の余白だけを指定する（padding をまとめて書くと .wrap の左右の余白 22px を消してしまい、スマホで文字が画面の端にくっつく） */
+.subhero-inner{position:relative;padding-top:clamp(40px,6vw,64px);padding-bottom:clamp(34px,5vw,52px)}
 .breadcrumb{font-size:.82rem;color:rgba(255,255,255,.6);margin-bottom:14px;letter-spacing:.02em}
 .breadcrumb a{color:rgba(255,255,255,.75)}
 .breadcrumb a:hover{color:var(--gold)}
