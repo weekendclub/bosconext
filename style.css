@@ -347,6 +347,8 @@ section.block{padding:clamp(56px,8vw,96px) 0}
 .taisen{margin-top:26px;border-left:5px solid var(--gold);background:rgba(244,192,30,.08);border-radius:14px;padding:20px 24px}
 .taisen h4{font-weight:900;font-size:1.1rem;margin-bottom:6px;display:flex;align-items:center;gap:.4em}
 .taisen p{color:var(--ink-soft);font-size:.95rem;margin-bottom:0}
+.taisen-link{display:inline-block;margin-top:10px;font-weight:700;font-size:.92rem;color:var(--brand);border-bottom:2px solid rgba(212,32,42,.3);transition:border-color .18s ease}
+.taisen-link:hover{border-bottom-color:var(--brand)}
 
 /* ---------- お知らせ一覧ページのしぼり込み ---------- */
 .news-filter{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:24px}
@@ -576,29 +578,135 @@ table.ltable{width:100%;border-collapse:collapse;min-width:520px}
 .locked-list div{display:flex;gap:.6em;align-items:flex-start;font-size:.92rem}
 .locked-list div::before{content:"⚽";flex:none}
 
-/* お問い合わせ */
-.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:34px;align-items:start}
-.contact-card{background:var(--paper-2);border:1px solid var(--line);border-radius:var(--radius);padding:clamp(24px,3.5vw,36px);box-shadow:var(--shadow-sm)}
-.contact-card h3{font-weight:900;font-size:1.3rem;margin-bottom:6px}
+/* =====================================================================
+   お問い合わせ（contact.html）
+   ===================================================================== */
+.contact-lead{margin-bottom:clamp(22px,4vw,34px)}
+.contact-grid{display:grid;grid-template-columns:minmax(0,1.7fr) minmax(0,1fr);gap:34px;align-items:start}
+.contact-card{background:var(--paper-2);border:1px solid var(--line);border-radius:var(--radius);padding:clamp(22px,3.5vw,36px);box-shadow:var(--shadow-sm);min-width:0;scroll-margin-top:84px}
+.contact-card h3{font-weight:900;font-size:1.2rem;margin-bottom:6px}
 .contact-card p{color:var(--ink-soft);margin-bottom:8px;font-size:.95rem}
+/* class="nb" の区切りは途中で改行しない（スマホで1文字だけ次の行に落ちるのを防ぐ） */
+.contact-card .nb{display:inline-block}
+/* JSで出し入れする部品は hidden 属性で隠す（display の指定に負けないようにする） */
+.contact-card [hidden]{display:none !important}
+.contact-side{display:flex;flex-direction:column;gap:22px;min-width:0}
 .contact-methods{display:flex;flex-direction:column;gap:12px;margin-top:16px}
 .cmethod{display:flex;align-items:center;gap:14px;padding:14px 16px;border:1px solid var(--line);border-radius:12px;transition:.2s}
 .cmethod:hover{border-color:var(--brand);background:rgba(212,32,42,.03)}
 .cmethod .ic{font-size:1.4rem}
-.cmethod .l1{font-weight:700;font-size:.95rem}
-.cmethod .l2{font-size:.8rem;color:var(--ink-soft)}
-.cform{display:flex;flex-direction:column;gap:14px}
-.cfield label{display:block;font-weight:700;font-size:.85rem;margin-bottom:6px}
-.cfield input,.cfield textarea{width:100%;padding:.8em 1em;border:1px solid var(--line);border-radius:10px;font:inherit;background:#fff;color:var(--ink)}
-.cfield input:focus,.cfield textarea:focus{outline:none;border-color:var(--brand);box-shadow:0 0 0 3px rgba(212,32,42,.12)}
+.cmethod .l1{display:block;font-weight:700;font-size:.95rem;line-height:1.5}
+.cmethod .l2{display:block;font-size:.8rem;color:var(--ink-soft);line-height:1.5}
+
+/* --- フォームの見出し・「必須」「任意」のしるし --- */
+.cf-title{font-weight:900;font-size:clamp(1.25rem,3.6vw,1.5rem);line-height:1.4;margin-bottom:4px}
+.contact-card .cf-sub{font-size:.85rem;margin-bottom:18px}
+.req,.opt{display:inline-block;vertical-align:.12em;margin-left:.7em;padding:.2em .7em;border-radius:999px;
+  font-size:.68rem;font-weight:700;line-height:1.3;letter-spacing:.06em;white-space:nowrap}
+.req{background:var(--brand);color:#fff}
+.opt{background:rgba(26,22,19,.07);color:var(--ink-soft)}
+.cf-sub .req{margin:0 .4em 0 0}
+
+.cform{display:flex;flex-direction:column;gap:18px}
+
+/* --- ご用件（4つのカードから1つ選ぶ） --- */
+.cf-types{border:0;padding:0;margin:0;min-width:0}
+.cf-types legend{padding:0;font-weight:700;font-size:.9rem;margin-bottom:8px}
+.cf-type-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.cf-type{position:relative;display:block;cursor:pointer}
+.cf-type input{position:absolute;inset:0;width:100%;height:100%;margin:0;opacity:0;cursor:pointer}
+.cf-type .box{display:flex;align-items:center;gap:12px;height:100%;min-height:68px;padding:12px 40px 12px 14px;
+  border:2px solid var(--line);border-radius:14px;background:#fff;
+  transition:border-color .18s ease, background .18s ease, box-shadow .18s ease}
+.cf-type .ic{flex:none;font-size:1.5rem;line-height:1}
+.cf-type b{display:block;font-weight:700;font-size:.95rem;line-height:1.4}
+.cf-type small{display:block;font-size:.76rem;color:var(--ink-soft);line-height:1.5}
+.cf-type:hover .box{border-color:rgba(212,32,42,.5)}
+.cf-type input:checked + .box{border-color:var(--brand);background:rgba(212,32,42,.05);box-shadow:0 0 0 3px rgba(212,32,42,.12)}
+.cf-type input:checked + .box::after{content:"✓";position:absolute;right:12px;top:50%;transform:translateY(-50%);
+  width:22px;height:22px;border-radius:50%;background:var(--brand);color:#fff;
+  font-size:.8rem;font-weight:900;line-height:22px;text-align:center}
+.cf-type input:focus-visible + .box{outline:3px solid var(--gold-600);outline-offset:2px}
+.contact-card .cf-pick{margin:0;padding:.9em 1em;border:1px dashed rgba(207,155,0,.7);border-radius:12px;
+  background:rgba(244,192,30,.1);color:var(--ink);font-size:.9rem;text-align:center}
+
+/* --- 入力欄 --- */
+.cf-fields{display:flex;flex-direction:column;gap:18px}
+.cfield label{display:block;font-weight:700;font-size:.9rem;margin-bottom:6px}
+.cfield input,.cfield textarea,.cfield select{width:100%;min-height:50px;padding:.75em 1em;border:1px solid rgba(26,22,19,.28);border-radius:10px;
+  font:inherit;font-size:1rem;line-height:1.6;background:#fff;color:var(--ink);scroll-margin-top:96px;
+  transition:border-color .18s ease, box-shadow .18s ease}
+.cfield textarea{display:block;resize:vertical;min-height:0}
+.cfield select{-webkit-appearance:none;appearance:none;cursor:pointer;padding-right:2.6em;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%235b5149' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 1em center;background-size:12px 8px}
+.cfield input::placeholder,.cfield textarea::placeholder{color:rgba(91,81,73,.6)}
+.cfield input:focus,.cfield textarea:focus,.cfield select:focus{outline:none;border-color:var(--brand);box-shadow:0 0 0 3px rgba(212,32,42,.16)}
+.cfield.has-error input,.cfield.has-error textarea,.cfield.has-error select{border-color:var(--brand-600);border-width:2px;background-color:#fff6f5}
+.contact-card .chint{margin:6px 0 0;font-size:.8rem;line-height:1.65;color:var(--ink-soft)}
+.contact-card .cerr{margin:6px 0 0;font-size:.85rem;line-height:1.6;font-weight:700;color:var(--brand-600)}
 .cnote{font-size:.78rem;color:var(--ink-soft);margin-top:6px}
+
+/* 機械による自動送信を見分けるための欄（人には見えない・読み上げもされない） */
+.cf-hp{position:absolute;width:1px;height:1px;margin:-1px;padding:0;border:0;overflow:hidden;
+  clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap}
+
+/* --- 個人情報の扱い・送信ボタン --- */
+.contact-card .cf-privacy{margin:0;padding:.8em 1em;border-left:4px solid var(--gold);border-radius:0 10px 10px 0;
+  background:var(--paper);font-size:.82rem;line-height:1.7;color:var(--ink-soft)}
+.cf-submit{display:flex;flex-direction:column;align-items:flex-start;gap:6px}
+.cf-submit .btn{min-width:220px;min-height:54px;justify-content:center;font-size:1.05rem}
+.cf-submit .btn[disabled]{opacity:.6;cursor:progress;transform:none;box-shadow:none}
+.cf-submit .btn[disabled]::after{display:none}
+.contact-card .cf-submit .cnote{margin:0;font-size:.8rem;line-height:1.65}
+
+/* --- 入力の不備・送信できなかったときの案内 --- */
+.cf-alert{padding:.8em 1em;border:1px solid rgba(176,21,31,.35);border-left:5px solid var(--brand-600);border-radius:10px;
+  background:#fdeeed;color:var(--brand-600);font-size:.9rem;font-weight:700;line-height:1.6;scroll-margin-top:96px}
+.contact-card p.cf-alert{color:var(--brand-600);margin-bottom:14px}
+.cf-manual{margin-top:22px;padding:clamp(16px,3vw,24px);border:2px solid var(--gold);border-radius:14px;
+  background:rgba(244,192,30,.08);scroll-margin-top:96px}
+.cf-manual h3{font-size:1.1rem}
+.contact-card .cf-manual p{color:var(--ink);font-size:.9rem;margin:0}
+.cf-manual-actions{display:flex;flex-wrap:wrap;gap:10px;margin:16px 0}
+.cf-manual-actions .btn{white-space:normal;text-align:center;justify-content:center}
+.cf-manual-data{display:grid;grid-template-columns:auto minmax(0,1fr);gap:10px 14px;align-items:start;margin:0}
+.cf-manual-data dt{font-weight:700;font-size:.82rem;line-height:1.9;white-space:nowrap}
+.cf-manual-data dd{margin:0;min-width:0;display:flex;flex-wrap:wrap;align-items:center;gap:8px;font-size:.9rem}
+.cf-manual-data dd > span{min-width:0;overflow-wrap:anywhere;line-height:1.6}
+.cf-manual-data textarea{flex:1 1 100%;width:100%;padding:.7em .9em;border:1px solid rgba(26,22,19,.28);border-radius:10px;
+  font:inherit;font-size:1rem;line-height:1.6;background:#fff;color:var(--ink);resize:vertical}
+.cf-copy{flex:none;padding:.35em 1em;border:1px solid rgba(26,22,19,.28);border-radius:999px;background:#fff;color:var(--ink);
+  font:inherit;font-size:.78rem;font-weight:700;line-height:1.5;cursor:pointer;transition:border-color .18s ease, color .18s ease}
+.cf-copy:hover{border-color:var(--brand);color:var(--brand)}
+.cf-manual .btn:focus-visible,.cf-copy:focus-visible,.cf-submit .btn:focus-visible{outline:3px solid var(--gold-600);outline-offset:2px}
+
+/* 送信完了ページ（thanks.html）の補足 */
+.locked-card .thanks-note{font-size:.85rem;line-height:1.75;text-align:left;margin:0 0 22px;padding:.9em 1.1em;
+  background:var(--paper);border-radius:12px}
+
+@media(min-width:901px){
+  /* フォームが長いので、右側の案内は画面に追従させる */
+  .contact-side{position:sticky;top:92px}
+}
+@media(max-width:900px){
+  .contact-grid{grid-template-columns:minmax(0,1fr);gap:22px}
+}
+@media(max-width:560px){
+  .cf-type-grid{grid-template-columns:minmax(0,1fr)}
+  .cf-type .box{min-height:60px}
+  .cf-submit{align-items:stretch}
+  .cf-submit .btn{width:100%}
+  .cf-manual-actions .btn{flex:1 1 100%}
+  .cf-manual-data{grid-template-columns:minmax(0,1fr);gap:2px}
+  .cf-manual-data dd{margin-bottom:10px}
+}
 
 /* フッターのページ列 */
 .foot-cols{display:flex;flex-wrap:wrap;gap:10px 26px;margin:18px 0 6px}
 .foot-cols a{font-size:.85rem;color:rgba(255,255,255,.7)}
 .foot-cols a:hover{color:var(--gold)}
 
-@media(max-width:820px){ .contact-grid{grid-template-columns:1fr;gap:22px} }
 @media(max-width:560px){
   .result-row{grid-template-columns:1fr auto;gap:6px 12px}
   .result-row .rd{grid-column:1/-1}

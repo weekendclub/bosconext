@@ -31,84 +31,476 @@
 </section>
 
 <section class="block">
-  <div class="wrap contact-grid">
+  <div class="wrap">
 
-    <div class="contact-card reveal">
-      <h3>連絡方法</h3>
-      <p>右のフォーム、またはSNSのDMからご連絡いただけます。体験・見学・入部・対戦のご相談も歓迎です。</p>
-      <div class="contact-methods">
-        <a class="cmethod" data-link="x" target="_blank" rel="noopener">
-          <span class="ic">𝕏</span><span><span class="l1">X（旧Twitter）のDM</span><span class="l2">@BOSCONEXT</span></span>
-        </a>
-        <a class="cmethod" data-link="instagram" target="_blank" rel="noopener">
-          <span class="ic">📷</span><span><span class="l1">Instagram のDM</span><span class="l2">@bosconext_futsal</span></span>
-        </a>
+    <div class="lead-block contact-lead reveal">
+      <p>BOSCO NEXTでは、新メンバー、スタッフメンバー、サポーターさまを随時大募集しております。一度体験に来ていただいたらやみつきになってしまうかもしれません。今までも何人も巻き込んできている安心の実績つきでございます。</p>
+      <p>障がいをお持ちの方、お持ちでない方に関わらず、ご興味のある方はお気軽にお問い合わせください！ よろしくお願い致します！！</p>
+    </div>
+
+    <div class="contact-grid">
+
+      <!-- ========== お問い合わせフォーム ========== -->
+      <div class="contact-card reveal">
+        <h2 class="cf-title">お問い合わせフォーム</h2>
+        <p class="cf-sub"><span class="req">必須</span><span class="nb">のついた項目は、</span><span class="nb">必ずご入力ください。</span></p>
+
+        <noscript><p class="cf-alert">このフォームを使うには、ブラウザの JavaScript を有効にしてください。SNSのDMからもご連絡いただけます。</p></noscript>
+
+        <form id="contactForm" class="cform" novalidate>
+          <div class="cf-alert" id="cfAlert" role="alert" tabindex="-1" hidden></div>
+
+          <!-- ご用件：選んだ内容によって、下の入力欄が切り替わります。
+               class="nb" は「この区切りの途中では改行しない」しるしです（スマホで1文字だけ次の行に落ちるのを防ぐ） -->
+          <fieldset class="cf-types">
+            <legend>ご用件<span class="req">必須</span></legend>
+            <div class="cf-type-grid">
+              <label class="cf-type">
+                <input type="radio" name="type" value="join">
+                <span class="box"><span class="ic" aria-hidden="true">⚽</span><span><b>入部・体験・見学</b><small><span class="nb">選手として</span><span class="nb">参加してみたい</span></small></span></span>
+              </label>
+              <label class="cf-type">
+                <input type="radio" name="type" value="manager">
+                <span class="box"><span class="ic" aria-hidden="true">🤝</span><span><b><span class="nb">マネージャー・</span><span class="nb">スタッフ希望</span></b><small><span class="nb">チームを支えたい・</span><span class="nb">応援したい</span></small></span></span>
+              </label>
+              <label class="cf-type">
+                <input type="radio" name="type" value="match">
+                <span class="box"><span class="ic" aria-hidden="true">⚔️</span><span><b><span class="nb">練習試合・</span><span class="nb">対戦のご相談</span></b><small><span class="nb">チームとして</span><span class="nb">試合をしたい</span></small></span></span>
+              </label>
+              <label class="cf-type">
+                <input type="radio" name="type" value="other">
+                <span class="box"><span class="ic" aria-hidden="true">✉️</span><span><b><span class="nb">その他の</span><span class="nb">お問い合わせ</span></b><small>取材・ご質問など</small></span></span>
+              </label>
+            </div>
+          </fieldset>
+
+          <p class="cf-pick" id="cfPick">ご用件を選ぶと、入力欄が表示されます。</p>
+
+          <div class="cf-fields" id="cfFields" hidden>
+
+            <div class="cfield" data-field="team" data-types="match">
+              <label for="cf-team">チーム名<span class="req">必須</span></label>
+              <input id="cf-team" name="team" type="text" maxlength="80" autocomplete="organization" placeholder="例：FC ○○" aria-describedby="cf-team-err">
+              <p class="cerr" id="cf-team-err" hidden></p>
+            </div>
+
+            <div class="cfield" data-field="name" data-types="join manager match other">
+              <label for="cf-name"><span id="cf-name-lb">お名前</span><span class="req">必須</span></label>
+              <input id="cf-name" name="name" type="text" maxlength="60" autocomplete="name" placeholder="例：山田 太郎" aria-describedby="cf-name-err">
+              <p class="cerr" id="cf-name-err" hidden></p>
+            </div>
+
+            <div class="cfield" data-field="kana" data-types="join manager">
+              <label for="cf-kana">フリガナ<span class="req">必須</span></label>
+              <input id="cf-kana" name="kana" type="text" maxlength="60" placeholder="例：ヤマダ タロウ" aria-describedby="cf-kana-err">
+              <p class="cerr" id="cf-kana-err" hidden></p>
+            </div>
+
+            <div class="cfield" data-field="gender" data-types="join manager">
+              <label for="cf-gender">性別<span class="req">必須</span></label>
+              <select id="cf-gender" name="gender" aria-describedby="cf-gender-err">
+                <option value="">選んでください</option>
+                <option>男性</option>
+                <option>女性</option>
+                <option>その他</option>
+                <option>答えたくない</option>
+              </select>
+              <p class="cerr" id="cf-gender-err" hidden></p>
+            </div>
+
+            <div class="cfield" data-field="email" data-types="join manager match other">
+              <label for="cf-email">メールアドレス<span class="req">必須</span></label>
+              <input id="cf-email" name="email" type="email" maxlength="120" autocomplete="email" inputmode="email" placeholder="例：name@example.com" aria-describedby="cf-email-hint cf-email-err">
+              <p class="cerr" id="cf-email-err" hidden></p>
+              <p class="chint" id="cf-email-hint">お返事は「@yahoo.co.jp」のアドレスからお送りします。迷惑メール対策（ドメイン指定受信など）をされている方は、@yahoo.co.jp からのメールを受け取れるように設定をお願いします。</p>
+            </div>
+
+            <div class="cfield" data-field="email2" data-types="join manager match other">
+              <label for="cf-email2">メールアドレス（もう1つ）<span class="opt">任意</span></label>
+              <input id="cf-email2" name="email2" type="email" maxlength="120" inputmode="email" placeholder="例：name@docomo.ne.jp" aria-describedby="cf-email2-hint cf-email2-err">
+              <p class="cerr" id="cf-email2-err" hidden></p>
+              <p class="chint" id="cf-email2-hint">携帯メールとフリーメール（Gmailなど）の両方をお持ちの方は、もう一方もご記入ください。お返事が届きやすくなります。</p>
+            </div>
+
+            <div class="cfield" data-field="disability" data-types="join">
+              <label for="cf-disability">障がいの有無（障がいについて）<span class="req">必須</span></label>
+              <textarea id="cf-disability" name="disability" rows="2" maxlength="300" placeholder="例：あり（精神障がい・通院中）／なし" aria-describedby="cf-disability-hint cf-disability-err"></textarea>
+              <p class="cerr" id="cf-disability-err" hidden></p>
+              <p class="chint" id="cf-disability-hint">書ける範囲で大丈夫です。</p>
+            </div>
+
+            <div class="cfield" data-field="message" data-types="join manager match other">
+              <label for="cf-message">メッセージ<span class="req">必須</span></label>
+              <textarea id="cf-message" name="message" rows="6" maxlength="4000" aria-describedby="cf-message-hint cf-message-err"></textarea>
+              <p class="cerr" id="cf-message-err" hidden></p>
+              <p class="chint" id="cf-message-hint"></p>
+            </div>
+
+            <!-- 機械による自動送信を見分けるための欄（画面には出ません。さわらないでください） -->
+            <div class="cf-hp" aria-hidden="true">
+              <label for="cf-hp">この欄には何も入力しないでください</label>
+              <input id="cf-hp" name="cf_hp" type="text" tabindex="-1" autocomplete="off">
+            </div>
+
+            <p class="cf-privacy">ご入力いただいた内容は、お問い合わせへのお返事と、体験・入部などのご案内のためだけに使います。</p>
+
+            <div class="cf-submit">
+              <button type="submit" class="btn btn-primary" id="cfSubmit">送信する</button>
+              <p class="cnote" id="cfModeNote"></p>
+            </div>
+          </div>
+        </form>
+
+        <!-- 送信できなかったとき／メールアプリで送るときの案内（ふだんは出ません） -->
+        <div class="cf-manual" id="cfManual" tabindex="-1" hidden>
+          <h3 id="cfManualTitle"></h3>
+          <p id="cfManualText"></p>
+          <div class="cf-manual-actions">
+            <button type="button" class="btn btn-primary" id="cfRetry">もう一度送信する</button>
+            <a class="btn btn-outline" id="cfMailLink" href="#">メールアプリで送る</a>
+          </div>
+          <dl class="cf-manual-data">
+            <dt>宛先</dt>
+            <dd><span id="cfManualTo"></span><button type="button" class="cf-copy" data-copy="cfManualTo">コピー</button></dd>
+            <dt>件名</dt>
+            <dd><span id="cfManualSubject"></span><button type="button" class="cf-copy" data-copy="cfManualSubject">コピー</button></dd>
+            <dt>本文</dt>
+            <dd><textarea id="cfManualBody" rows="9" readonly aria-label="お問い合わせの内容"></textarea><button type="button" class="cf-copy" data-copy="cfManualBody">本文をコピー</button></dd>
+          </dl>
+        </div>
       </div>
-    </div>
 
-    <div class="contact-card reveal">
-      <h3>メッセージを送る</h3>
-      <p>必要事項をご記入のうえ、送信ボタンを押してください。お使いのメールアプリが起動します。</p>
-      
-      <form onsubmit="sendEmail(event)" class="cform">
-        <div class="cfield">
-          <label for="cf-name">お名前</label>
-          <input id="cf-name" type="text" placeholder="山田 太郎" required>
+      <!-- ========== フォーム以外の連絡方法 ========== -->
+      <div class="contact-side">
+        <div class="contact-card reveal">
+          <h3>SNSのDMでもOK</h3>
+          <p>フォームのほか、SNSのDMからもご連絡いただけます。</p>
+          <div class="contact-methods">
+            <a class="cmethod" data-link="x" target="_blank" rel="noopener">
+              <span class="ic">𝕏</span><span><span class="l1">X（旧Twitter）のDM</span><span class="l2">@BOSCONEXT</span></span>
+            </a>
+            <a class="cmethod" data-link="instagram" target="_blank" rel="noopener">
+              <span class="ic">📷</span><span><span class="l1">Instagram のDM</span><span class="l2">@bosconext_futsal</span></span>
+            </a>
+          </div>
         </div>
-        
-        <div class="cfield">
-          <label for="cf-type">お問い合わせの種類</label>
-          <select id="cf-type" style="width:100%;padding:.8em 1em;border:1px solid var(--line);border-radius:10px;font:inherit;background:#fff;color:var(--ink)">
-            <option value="general">体験・見学希望 / 取材 / その他</option>
-            <option value="join">入部希望</option>
-            <option value="matchmake">練習試合・対戦のご相談</option>
-          </select>
+        <div class="contact-card reveal">
+          <h3>お返事について</h3>
+          <p>内容を確認のうえ、担当者からメールでお返事します。返信まで少しお時間をいただく場合があります。</p>
+          <p>しばらく待っても届かないときは、迷惑メールフォルダをご確認のうえ、SNSのDMでお知らせください。</p>
         </div>
-        
-        <div class="cfield">
-          <label for="cf-msg">お問い合わせ内容</label>
-          <textarea id="cf-msg" rows="5" placeholder="ご相談内容をご記入ください" required></textarea>
-        </div>
-        
-        <button type="submit" class="btn btn-primary">メールを作成する</button>
-      </form>
-      
-      <p class="cnote" style="margin-top: 20px;">※「メールを作成する」を押すと、選択した目的に応じたチームの担当者宛てにメールの下書きが作成されますので、そのまま送信してください。</p>
-    </div>
+      </div>
 
+    </div>
   </div>
 </section>
 
 <footer id="site-footer"></footer>
 <button class="to-top" id="toTop" aria-label="上に戻る">↑</button>
 
+<!-- 全ページ共通（メニュー・フッター・リンクはここで管理） -->
+<script src="./site.js"></script>
 <script>
-function sendEmail(event) {
-  event.preventDefault(); // 通常の送信をキャンセル
+/* =====================================================================
+   ★★★ お問い合わせフォームの設定 ★★★
+   ・入力欄の見出しや例文        → 上の HTML をそのまま書き換える
+   ・ご用件ごとの案内文・宛先    → この下の CONTACT を書き換える
+   ・項目を増やす／必須を変える  → 上の HTML と、この下の「表示の仕組み」、
+                                    backend/contact-form.gs の3か所をそろえる
+   ===================================================================== */
+const CONTACT = {
+  /* 送信の受け口（Google Apps Script の「ウェブアプリ」のURL）。
+     ここが空（""）のあいだは、送信ボタンを押すと「メールアプリを開く方式」で動きます。
+     受け口の作り方は README.md の「お問い合わせフォームの仕組み」を見てください。 */
+  endpoint: "",
 
-  const name = document.getElementById('cf-name').value;
-  const typeSelect = document.getElementById('cf-type');
-  const typeText = typeSelect.options[typeSelect.selectedIndex].text;
-  const message = document.getElementById('cf-msg').value;
+  /* メールアプリで送る場合の宛先（受け口が未設定のとき・送信に失敗したときに使います）。
+     「@ より前」だけを書きます。アドレスを1つの文字列で書かないのは、
+     迷惑メール業者の自動収集を避けるためです */
+  mailDomain: "yahoo.co.jp",
+  mailTo: {
+    join:    "bosco_next_futsal-management",
+    manager: "bosco_next_futsal-management",
+    match:   "bosco_next_futsal-matchmake",
+    other:   "bosco_futsal"
+  },
 
-  // 選択肢によってメールアドレスを切り替え
-  let emailTo = "bosco_futsal@yahoo.co.jp"; // デフォルト（総合）
-  
-  if (typeSelect.value === "join") {
-    emailTo = "bosco_next_futsal-management@yahoo.co.jp"; // 入部希望
-  } else if (typeSelect.value === "matchmake") {
-    emailTo = "bosco_next_futsal-matchmake@yahoo.co.jp"; // マッチメイク
+  /* ご用件ごとの表示。label＝メールの件名・本文に入る名前、hint＝メッセージ欄の下の案内、example＝メッセージ欄の例文 */
+  types: {
+    join: {
+      label: "入部・体験・見学",
+      hint: "フットサルやサッカーの経験、体験に来られそうな日、聞いてみたいことなどをお書きください。",
+      example: "例）フットサルは未経験ですが、体験に参加してみたいです。土曜日なら参加できます。"
+    },
+    manager: {
+      label: "マネージャー・スタッフ希望",
+      hint: "どのような形で関わりたいか、参加できそうな頻度などをお書きください。",
+      example: "例）マネージャーとしてチームを支えたいです。月に2回ほど参加できます。"
+    },
+    match: {
+      label: "練習試合・対戦のご相談",
+      nameLabel: "ご担当者のお名前",
+      hint: "希望の日程・場所、チームのご紹介（人数やカテゴリなど）をお書きください。",
+      example: "例）12月の土曜日に、練習試合をお願いできないでしょうか。会場はこちらで確保できます。"
+    },
+    other: {
+      label: "その他のお問い合わせ",
+      hint: "取材・掲載のご相談なども、こちらからどうぞ。",
+      example: "ご用件をお書きください。"
+    }
+  }
+};
+
+/* ===== 表示の仕組み（基本さわらなくてOK） ===== */
+(function(){
+  var form = document.getElementById("contactForm");
+  if(!form) return;
+  var byId = function(id){ return document.getElementById(id); };
+  var fieldsBox = byId("cfFields"), pickNote = byId("cfPick"), alertBox = byId("cfAlert");
+  var submitBtn = byId("cfSubmit"), manual = byId("cfManual");
+  var wraps = [].slice.call(form.querySelectorAll(".cfield[data-field]"));
+  var useEndpoint = !!CONTACT.endpoint;
+  var loadedAt = Date.now();
+  var sending = false, triedSubmit = false, lastData = null;
+
+  /* メールや画面に出す項目名（並び順もこの順） */
+  var ORDER = ["team","name","kana","gender","email","email2","disability","message"];
+  var LABEL = { team:"チーム名", name:"お名前", kana:"フリガナ", gender:"性別", email:"メールアドレス",
+                email2:"メールアドレス（もう1つ）", disability:"障がいの有無（障がいについて）", message:"メッセージ" };
+  var OPTIONAL = { email2:true };
+  var EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+  var KANA_RE  = /^[ァ-ヶー・ｦ-ﾟ\s]+$/;
+
+  function ctrl(name){ return form.elements[name]; }
+  function currentType(){ var r = form.querySelector('input[name="type"]:checked'); return r ? r.value : ""; }
+  function labelOf(f, type){ return (f === "name" && CONTACT.types[type].nameLabel) || LABEL[f]; }
+  function shown(f){ var c = ctrl(f); return !!c && !c.disabled; }
+
+  /* ---- 入力の整え方 ---- */
+  function toHalf(s){ return s.replace(/[！-～]/g, function(c){ return String.fromCharCode(c.charCodeAt(0) - 0xFEE0); }); }
+  function hiraToKata(s){ return s.replace(/[ぁ-ゖ]/g, function(c){ return String.fromCharCode(c.charCodeAt(0) + 0x60); }); }
+  function normalize(f, v){
+    v = String(v == null ? "" : v).replace(/\r\n?/g, "\n");
+    if(f === "email" || f === "email2") return toHalf(v).replace(/\s+/g, "");   /* 全角の＠や英数字を半角に */
+    if(f === "kana") v = hiraToKata(v);                                          /* ひらがなはカタカナに */
+    if(f !== "message" && f !== "disability") v = v.replace(/\s+/g, " ");
+    return v.replace(/^\s+|\s+$/g, "");
+  }
+  function valueOf(f){ return normalize(f, ctrl(f).value); }
+
+  /* ---- 入力チェック。問題なければ空文字、あればメッセージを返す ---- */
+  function check(f){
+    var v = valueOf(f), type = currentType();
+    if(!v){
+      if(OPTIONAL[f]) return "";
+      return f === "gender" ? "性別をお選びください。" : labelOf(f, type) + "をご入力ください。";
+    }
+    if((f === "email" || f === "email2") && !EMAIL_RE.test(v)) return "メールアドレスの形をご確認ください（例：name@example.com）。";
+    if(f === "kana" && !KANA_RE.test(v)) return "カタカナでご入力ください（例：ヤマダ タロウ）。";
+    return "";
+  }
+  function setError(f, msg){
+    var wrap = form.querySelector('.cfield[data-field="' + f + '"]'), err = byId("cf-" + f + "-err"), c = ctrl(f);
+    if(!wrap || !err) return;
+    err.textContent = msg || ""; err.hidden = !msg;
+    wrap.classList.toggle("has-error", !!msg);
+    if(msg) c.setAttribute("aria-invalid", "true"); else c.removeAttribute("aria-invalid");
+  }
+  function validate(f){ var msg = check(f); setError(f, msg); return !msg; }
+  function showAlert(msg){ alertBox.textContent = msg || ""; alertBox.hidden = !msg; }
+  /* 案内にカーソルを移し、見出しが上のメニューに隠れない位置までスクロールする */
+  function reveal(el){
+    try{ el.focus({ preventScroll: true }); }catch(e){ el.focus(); }
+    var calm = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    el.scrollIntoView({ behavior: calm ? "auto" : "smooth", block: "start" });
   }
 
-  // メール件名と本文の作成
-  const subject = encodeURIComponent(`【BOSCO NEXTお問い合わせ】${typeText}`);
-  const body = encodeURIComponent(`お名前: ${name}様\n\n【本文】\n${message}`);
+  /* ---- ご用件に合わせて入力欄を切り替える ---- */
+  function applyType(){
+    var type = currentType(), has = !!type;
+    fieldsBox.hidden = !has; pickNote.hidden = has;
+    wraps.forEach(function(w){
+      var f = w.getAttribute("data-field");
+      var on = has && w.getAttribute("data-types").split(" ").indexOf(type) >= 0;
+      w.hidden = !on;
+      ctrl(f).disabled = !on;            /* 出していない欄は送信もチェックもしない */
+      if(!on) setError(f, "");
+    });
+    if(!has) return;
+    var t = CONTACT.types[type];
+    byId("cf-name-lb").textContent = t.nameLabel || LABEL.name;
+    ctrl("message").placeholder = t.example;
+    byId("cf-message-hint").textContent = t.hint;
+    if(triedSubmit) ORDER.forEach(function(f){ if(shown(f)) validate(f); });
+    try{ history.replaceState(null, "", location.pathname + "?type=" + type); }catch(e){}
+  }
 
-  // メールアプリを起動するリンクにジャンプ
-  window.location.href = `mailto:${emailTo}?subject=${subject}&body=${body}`;
-}
+  /* ---- 送る内容をまとめる ---- */
+  function collect(){
+    var d = { type: currentType() };
+    ORDER.forEach(function(f){ if(shown(f)) d[f] = valueOf(f); });
+    if(d.email2 && d.email2 === d.email) d.email2 = "";
+    return d;
+  }
+  function subjectOf(d){
+    var who = (d.type === "match" && d.team) ? d.team + "（" + d.name + " さん）" : d.name + " さん";
+    return "【BOSCO NEXT】" + CONTACT.types[d.type].label + "：" + who;
+  }
+  function bodyOf(d){
+    var L = ["■ ご用件", CONTACT.types[d.type].label, ""];
+    ORDER.forEach(function(f){
+      if(f === "kana" || !d[f]) return;
+      L.push("■ " + labelOf(f, d.type));
+      L.push(f === "name" && d.kana ? d.name + "（" + d.kana + "）" : d[f]);
+      L.push("");
+    });
+    return L.join("\n").replace(/\s+$/, "");
+  }
+  function addressOf(d){ return CONTACT.mailTo[d.type] + "@" + CONTACT.mailDomain; }
+  function mailtoOf(d){
+    return "mailto:" + addressOf(d) + "?subject=" + encodeURIComponent(subjectOf(d)) + "&body=" + encodeURIComponent(bodyOf(d));
+  }
+
+  /* ---- 送信できなかったとき／メールアプリで送るときの案内 ---- */
+  function showManual(d, failed){
+    lastData = d;
+    byId("cfManualTitle").textContent = failed ? "送信できませんでした" : "メールアプリを開きます";
+    byId("cfManualText").textContent = failed
+      ? "通信の状態などにより、送信できませんでした。入力した内容は消えていません。お手数ですが、もう一度お試しいただくか、メールアプリ・SNSのDMでご連絡ください。"
+      : "入力した内容が入ったメールが開きますので、そのまま送信してください。メールアプリが開かない場合は、下の内容をコピーして、宛先のアドレスへメールでお送りください。";
+    byId("cfRetry").hidden = !failed;
+    byId("cfMailLink").textContent = failed ? "メールアプリで送る" : "メールアプリを開く";
+    byId("cfMailLink").href = mailtoOf(d);
+    byId("cfManualTo").textContent = addressOf(d);
+    byId("cfManualSubject").textContent = subjectOf(d);
+    byId("cfManualBody").value = bodyOf(d);
+    manual.hidden = false;
+    reveal(manual);
+  }
+
+  function setSending(on){
+    sending = on;
+    submitBtn.disabled = on;
+    submitBtn.textContent = on ? "送信中…" : (useEndpoint ? "送信する" : "メールを作成する");
+    if(on) submitBtn.setAttribute("aria-busy", "true"); else submitBtn.removeAttribute("aria-busy");
+  }
+
+  /* ---- 受け口へ送る ---- */
+  function send(d){
+    setSending(true); showAlert(""); manual.hidden = true;
+    var data = {}; Object.keys(d).forEach(function(k){ data[k] = d[k]; });
+    data.cf_hp = ctrl("cf_hp").value;
+    /* ページを開いて数秒以内の送信は機械とみなされるので、人の操作では起きないよう少し待つ */
+    var wait = Math.max(0, 3500 - (Date.now() - loadedAt));
+    setTimeout(function(){
+      data.t = String(Date.now() - loadedAt);
+      var abort = ("AbortController" in window) ? new AbortController() : null;
+      var timer = setTimeout(function(){ if(abort) abort.abort(); }, 25000);
+      fetch(CONTACT.endpoint, { method:"POST", body:new URLSearchParams(data), signal: abort ? abort.signal : undefined })
+        .then(function(r){ if(!r.ok) throw new Error("HTTP " + r.status); return r.json(); })
+        .then(function(res){
+          clearTimeout(timer);
+          /* 完了ページへ。replace を使うのは、「戻る」でこのフォームに戻って同じ内容をもう一度送ってしまうのを防ぐため */
+          if(res && res.ok){ location.replace("thanks.html"); return; }
+          setSending(false);
+          if(res && res.error === "invalid" && res.fields && res.fields.length){
+            /* 受け口側のチェックで見つかった不備を、該当の欄に表示する */
+            var first = null;
+            res.fields.forEach(function(f){
+              if(!shown(f)) return;
+              setError(f, check(f) || labelOf(f, d.type) + "をご確認ください。");
+              first = first || ctrl(f);
+            });
+            if(first){ showAlert("入力内容をご確認ください。"); first.focus(); return; }
+          }
+          showManual(d, true);
+        })
+        .catch(function(){ clearTimeout(timer); setSending(false); showManual(d, true); });
+    }, wait);
+  }
+
+  /* ---- 画面の操作 ---- */
+  [].forEach.call(form.querySelectorAll('input[name="type"]'), function(r){ r.addEventListener("change", applyType); });
+
+  ORDER.forEach(function(f){
+    var c = ctrl(f);
+    c.addEventListener("blur", function(){
+      if(c.disabled) return;
+      var v = normalize(f, c.value);
+      if(f !== "message" && f !== "disability" && c.value !== v) c.value = v;   /* 整えた形を欄に戻す */
+      if(c.value || triedSubmit) validate(f);
+    });
+    c.addEventListener("input", function(){ if(c.getAttribute("aria-invalid") && !check(f)) setError(f, ""); });
+    if(c.tagName === "SELECT") c.addEventListener("change", function(){ validate(f); });
+  });
+
+  form.addEventListener("submit", function(ev){
+    ev.preventDefault();
+    if(sending) return;
+    triedSubmit = true;
+    var bad = ORDER.filter(function(f){ return shown(f) && !validate(f); });
+    if(!currentType() || bad.length){
+      showAlert(bad.length ? "入力内容に不備が " + bad.length + " 件あります。赤く表示された項目をご確認ください。" : "ご用件をお選びください。");
+      if(bad.length) ctrl(bad[0]).focus(); else reveal(alertBox);
+      return;
+    }
+    showAlert("");
+    var d = collect();
+    if(useEndpoint){ send(d); }
+    else { showManual(d, false); location.href = mailtoOf(d); }
+  });
+
+  byId("cfRetry").addEventListener("click", function(){ if(lastData && !sending) send(lastData); });
+
+  [].forEach.call(manual.querySelectorAll(".cf-copy"), function(btn){
+    var original = btn.textContent;
+    btn.addEventListener("click", function(){
+      var src = byId(btn.getAttribute("data-copy")), text = ("value" in src) ? src.value : src.textContent;
+      var done = function(){ btn.textContent = "コピーしました"; setTimeout(function(){ btn.textContent = original; }, 1800); };
+      var legacy = function(){
+        var ta = document.createElement("textarea"); ta.value = text; ta.setAttribute("readonly", "");
+        ta.style.position = "fixed"; ta.style.opacity = "0"; document.body.appendChild(ta); ta.select();
+        try{ document.execCommand("copy"); done(); }catch(e){}
+        document.body.removeChild(ta);
+      };
+      if(navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(done, legacy); else legacy();
+    });
+  });
+
+  /* このページの中で「体験・入部」などのボタンを押したときは、読み込み直さずに（入力を消さずに）ご用件だけ切り替える */
+  document.addEventListener("click", function(ev){
+    var a = ev.target.closest ? ev.target.closest('a[href^="contact.html?type="]') : null;
+    if(!a || ev.defaultPrevented || ev.button || ev.metaKey || ev.ctrlKey || ev.shiftKey || ev.altKey || a.target === "_blank") return;
+    var t = (a.getAttribute("href").match(/[?&]type=([a-z]+)/) || [])[1];
+    var radio = t && form.querySelector('input[name="type"][value="' + t + '"]');
+    if(!radio) return;
+    ev.preventDefault();
+    if(!radio.checked){ radio.checked = true; applyType(); }
+    var calm = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    (form.closest(".contact-card") || form).scrollIntoView({ behavior: calm ? "auto" : "smooth", block: "start" });
+    try{ radio.focus({ preventScroll: true }); }catch(e){}
+  });
+
+  /* ---- はじめの状態 ---- */
+  submitBtn.textContent = useEndpoint ? "送信する" : "メールを作成する";
+  byId("cfModeNote").textContent = useEndpoint
+    ? "「送信する」を押すと、内容がチームの担当者に届きます。"
+    : "「メールを作成する」を押すと、お使いのメールアプリが開き、入力した内容が本文に入ります。そのまま送信してください。";
+  /* ほかのページのボタンから来たとき（contact.html?type=join など）は、そのご用件を選んだ状態で開く */
+  var want = (location.search.match(/[?&]type=([a-z]+)/) || [])[1];
+  if(want && CONTACT.types[want]){
+    var radio = form.querySelector('input[name="type"][value="' + want + '"]');
+    if(radio) radio.checked = true;
+  }
+  applyType();
+
+  /* 「戻る」や再読み込みでこのページに戻ってきたとき、ブラウザが入力内容（選んだご用件など）を
+     復元することがあるので、入力欄の出し分けをそれに合わせ直す */
+  window.addEventListener("pageshow", function(ev){
+    if(ev.persisted) setSending(false);
+    applyType();
+  });
+})();
 </script>
-
-<script src="./site.js"></script>
 </body>
 </html>

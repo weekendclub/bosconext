@@ -11,8 +11,9 @@ var SITE_INFO = {
 
   /* 体験・入部やお問い合わせの行き先、SNS など（URLを書き換えればOK） */
   links: {
-    join:        "contact.html",   /* 「体験・入部」ボタンの行き先 */
-    contact:     "contact.html",   /* 「お問い合わせ」ボタンの行き先 */
+    join:        "contact.html?type=join",    /* 「体験・入部」ボタンの行き先（ご用件「入部・体験・見学」を選んだ状態で開く） */
+    match:       "contact.html?type=match",   /* 「練習試合・対戦」の行き先（ご用件「練習試合・対戦のご相談」を選んだ状態で開く） */
+    contact:     "contact.html",              /* 「お問い合わせ」ボタンの行き先 */
     x:           "https://x.com/BOSCONEXT",
     instagram:   "https://www.instagram.com/bosconext_futsal/",
     note:        "https://note.com/mackeyfootball/n/ndbd9daead388",
